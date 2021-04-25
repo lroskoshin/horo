@@ -7,3 +7,17 @@ export type Subscription<T> = {
 };
 
 export type Instertions = Subscribable<unknown> | Subscription<Event>;
+
+export function ensureSubscribable(instertion: Instertions): Subscribable<unknown> {
+    if('subscribe' in instertion && typeof instertion.subscribe === 'function') {
+        return instertion;
+    } 
+    throw new Error('The passed value is not a Subscribable.');
+} 
+
+export function ensureSubscription(instertion: Instertions): Subscription<unknown> {
+    if('next' in instertion && typeof instertion.next === 'function') {
+        return instertion;
+    } 
+    throw new Error('The passed value is not a Subscription.');
+} 

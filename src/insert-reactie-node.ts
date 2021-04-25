@@ -1,12 +1,13 @@
-import { Instertions, Subscribable } from './insertions';
+import { ensureSubscribable, Instertions } from './insertions';
 
-export function insertReactiveNode(fragment: DocumentFragment, inserts: Instertions[]): void {
+export function insertReactiveNode(fragment: DocumentFragment, insertions: Instertions[]): void {
     const socketsForIsnert = fragment.querySelectorAll('[data-index]');
     socketsForIsnert.forEach((socket: Element) => {
         const textNode = document.createTextNode('');
-        const index = socket.getAttribute('data-index');
-        (inserts[parseInt(index as string)] as Subscribable<unknown>).subscribe((value: any) => {
-            textNode.nodeValue = value;
+        const index = parseInt(socket.getAttribute('data-index') as string);
+        const insertion = ensureSubscribable(insertions[index]);
+        insertion.subscribe((value: unknown) => {
+            textNode.nodeValue = value as string;
         });
         socket.replaceWith(textNode);
     });
