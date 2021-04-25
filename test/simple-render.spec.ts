@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
- import { h } from '../src';
+ import { horo } from '../src/horo';
  
  describe('Render', () => {
      it('Simple Render Hello World', () => {
-        const fragment = h`
+        const fragment = horo`
         <div>
             hello world
         </div>

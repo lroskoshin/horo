@@ -4,7 +4,6 @@
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { horo } from '../src/horo';
-import '@testing-library/jest-dom/extend-expect';
 import {
     getByTestId,
     fireEvent,
