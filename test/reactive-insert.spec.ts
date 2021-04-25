@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { ReplaySubject } from 'rxjs';
-import { h } from '../src';
+import { horo } from '../src/horo';
 
 describe('Reactive Insert RxJS', () => {
     const subject = new ReplaySubject<string>();
@@ -10,7 +10,7 @@ describe('Reactive Insert RxJS', () => {
     const element = document.createElement('div');
 
     beforeAll(() => {
-        const fragment = h`
+        const fragment = horo`
         <div>
             ${subject}
         </div>

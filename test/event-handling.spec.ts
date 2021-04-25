@@ -3,7 +3,7 @@
  */
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { h } from '../src';
+import { horo } from '../src/horo';
 import '@testing-library/jest-dom/extend-expect';
 import {
     getByTestId,
@@ -15,7 +15,7 @@ describe('Event Handling RxJS', () => {
     const element = document.createElement('div');
  
     beforeAll(() => {
-        const fragment = h`
+        const fragment = horo`
         <div>
             <input data-event-input=${subject} data-testid="input"></input>
             <div>${subject.pipe(
