@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { horo } from '../src/horo';
 import {
     getByTestId,
@@ -11,17 +11,19 @@ import {
  
 describe('Event Handling RxJS', () => {
     const input = new Subject<Event>();
+    const text = input.pipe(
+        map((event: Event): string => {
+            return (event as InputEvent).data as string;
+        }),
+        startWith('hello')
+    );
     const element = document.createElement('div');
  
     beforeAll(() => {
         const component = horo`
         <div>
             <input data-event-input=${input} data-testid="input"></input>
-            <div>${input.pipe(
-                map((event: Event): string => {
-                    return (event as InputEvent).data as string;
-                })
-            )}</div>
+            <span>${text}</span>
         </div>
         `;
         element.appendChild(component.fragment);
@@ -30,8 +32,8 @@ describe('Event Handling RxJS', () => {
     it('Input', () => {
         const input = getByTestId(element, 'input') as HTMLInputElement;
         fireEvent(input, new InputEvent('input', {
-            data: 'hello'
+            data: 'world'
         }));
-        expect(element).toHaveTextContent('hello');
+        expect(element).toHaveTextContent('world');
     });
 });
