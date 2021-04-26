@@ -10,14 +10,14 @@ import {
 } from '@testing-library/dom';
  
 describe('Event Handling RxJS', () => {
-    const subject = new Subject<Event>();
+    const input = new Subject<Event>();
     const element = document.createElement('div');
  
     beforeAll(() => {
         const component = horo`
         <div>
-            <input data-event-input=${subject} data-testid="input"></input>
-            <div>${subject.pipe(
+            <input data-event-input=${input} data-testid="input"></input>
+            <div>${input.pipe(
                 map((event: Event): string => {
                     return (event as InputEvent).data as string;
                 })
