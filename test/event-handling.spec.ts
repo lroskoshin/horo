@@ -29,7 +29,7 @@ describe('Event Handling RxJS', () => {
         element.appendChild(component.fragment);
     });
 
-    it('Input', () => {
+    it('Input "world"', () => {
         const input = getByTestId(element, 'input') as HTMLInputElement;
         fireEvent(input, new InputEvent('input', {
             data: 'world'
