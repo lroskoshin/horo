@@ -10,12 +10,12 @@ describe('Reactive Insert RxJS', () => {
     const element = document.createElement('div');
 
     beforeAll(() => {
-        const fragment = horo`
+        const component = horo`
         <div>
             ${subject}
         </div>
         `;
-        element.appendChild(fragment);
+        element.appendChild(component.fragment);
     });
 
     it('Init Text', () => {

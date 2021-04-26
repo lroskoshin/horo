@@ -1,4 +1,4 @@
-import { ensureSubscription, Instertions } from './insertions';
+import { ensureSubscription, Instertions } from './insertions/insertions';
 
 export function listenEvent(fragment: DocumentFragment, insertions: Instertions[]): void {
     const listeningElements = fragment.querySelectorAll('[data-event]');

@@ -14,7 +14,7 @@ describe('Event Handling RxJS', () => {
     const element = document.createElement('div');
  
     beforeAll(() => {
-        const fragment = horo`
+        const component = horo`
         <div>
             <input data-event-input=${subject} data-testid="input"></input>
             <div>${subject.pipe(
@@ -24,7 +24,7 @@ describe('Event Handling RxJS', () => {
             )}</div>
         </div>
         `;
-        element.appendChild(fragment);
+        element.appendChild(component.fragment);
     });
 
     it('Input', () => {

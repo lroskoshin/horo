@@ -6,9 +6,14 @@ export type Subscription<T> = {
     next(value: T): void;
 };
 
-export type Instertions = Subscribable<unknown> | Subscription<Event>;
+export interface Component {
+    delete(): void;
+    fragment: DocumentFragment;
+}
 
-export function ensureSubscribable(instertion: Instertions): Subscribable<unknown> {
+export type Instertions = Subscribable<string | Component> | Subscription<Event>;
+
+export function ensureSubscribable(instertion: Instertions): Subscribable<string | Component> {
     if('subscribe' in instertion && typeof instertion.subscribe === 'function') {
         return instertion;
     } 
