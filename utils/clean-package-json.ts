@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * This script does something like https://github.com/shashkovdanil/clean-publish does
  * but it seems that clean-publish isn't supported anymore and we can't use it in CI
