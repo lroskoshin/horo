@@ -1,5 +1,6 @@
 # horo
 ![Actions CI](https://github.com/lroskoshin/horo/actions/workflows/ci.yml/badge.svg)
+![NPM Version](https://img.shields.io/npm/v/horojs)
 ## The Why
 Why not?
 ## Usage
