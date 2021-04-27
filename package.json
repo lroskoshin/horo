@@ -12,7 +12,7 @@
     "test": "jest",
     "build": "rollup -c rollup.config.ts",
     "lint": "eslint .",
-    "clean-package-json": "node -r ts-node/register scripts/clean-package-json.ts"
+    "clean-package-json": "node -r ts-node/register utils/clean-package-json.ts"
   },
   "repository": {
     "type": "git",
