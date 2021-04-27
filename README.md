@@ -6,6 +6,7 @@ Why not?
 ## Usage
 Horo doesn't have herself own state management. And we should use Horo with other libs for this.
 For example, Horo looks good with RxJS.
+### Kinda sorta Components
 ```typescript
 import { Observable, ReplaySubject } from 'rxjs';
 import { horo, Component } from 'horo';
@@ -29,3 +30,21 @@ function HelloWorldComponent(): Observable<Component> {
 ```
 Now you just need to call mount on the root element, as you would with Vue/React/Angular application.
 Or any other place you want. Why not?
+
+### Event Handling
+```typescript
+const input = new Subject<Event>();
+const text = input.pipe(
+    map((event: Event): string => {
+        return (event as InputEvent).data as string;
+    }),
+    startWith('hello')
+);
+const component = horo`
+    <div>
+        <input data-event-input=${input} data-testid="input"></input>
+        <span>${text}</span>
+    </div>
+`;
+```
+
