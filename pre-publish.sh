@@ -9,6 +9,6 @@ echo ">> Building a package..."
 npm run build
 
 echo ">> Cleaning up a package.json file..."
-ts-node scripts/clean-package-json.js
+npx ts-node scripts/clean-package-json.js
 
 echo "Package is ready to publish"
