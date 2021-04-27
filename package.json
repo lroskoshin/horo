@@ -11,7 +11,8 @@
   "scripts": {
     "test": "jest",
     "build": "rollup -c rollup.config.ts",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean-package-json": "ts-node scripts/clean-package-json.js"
   },
   "repository": {
     "type": "git",
