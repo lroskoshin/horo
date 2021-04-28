@@ -5,13 +5,12 @@ interface InsertionAddress {
     end: Node,
 }
 
-export function insertReactiveNode(fragment: DocumentFragment, insertions: Instertions[]): void {
+export function insertValue(fragment: DocumentFragment, insertions: Instertions[]): void {
     const socketsForIsnert = fragment.querySelectorAll('[data-index]');
     socketsForIsnert.forEach((socket: Element) => {
         const index = parseInt(socket.getAttribute('data-index') as string);
         const insertion = ensureSubscribable(insertions[index]);
         inject(socket, insertion);
-        
     });
 }
 
