@@ -1,4 +1,4 @@
-import { ensureSubscribable, Instertions, Subscribable, Component } from './insertions/insertions';
+import { ensureSubscribable, Instertions, Component, DynamicInsertion } from './insertions/insertions';
 
 interface InsertionAddress {
     start: Node,
@@ -15,7 +15,7 @@ export function insertReactiveNode(fragment: DocumentFragment, insertions: Inste
     });
 }
 
-function inject(socket: Element, insertion: Subscribable<Component | string>) {
+function inject(socket: Element, insertion: DynamicInsertion) {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     let lastDestroyer = () => {};
     // Временное решение, возможно нужно будет перейти на Range целиком. 
