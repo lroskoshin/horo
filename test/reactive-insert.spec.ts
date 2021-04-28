@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment jsdom-latest
  */
 import { ReplaySubject } from 'rxjs';
 import { horo } from '../src/horo';

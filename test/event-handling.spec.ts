@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment jsdom-latest
  */
 import { Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
