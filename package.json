@@ -5,9 +5,9 @@
   "files": [
     "dist"
   ],
-  "main": "dist/horo.umd.js",
-  "module": "dist/horo.es5.js",
-  "typings": "dist/types/horo.d.ts",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es5.js",
+  "typings": "dist/types/index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "rollup -c rollup.config.ts",
