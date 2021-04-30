@@ -9,7 +9,7 @@ describe('Inject component', () => {
         mount(element);
     });
 
-    it('Static component insertion', () => {
+    it('Dynamic component insertion', () => {
         expect(element).toHaveTextContent('Hello World');
     });
 });

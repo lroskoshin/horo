@@ -1,5 +1,11 @@
 import { StaticInsertion } from './insertions';
+import { mergeComponents } from '../merge-components';
 
 export function injectStaticValue(socket: Element, insertion: StaticInsertion): void {
-    socket.replaceWith(typeof insertion === 'string' ? insertion : insertion.fragment);
+    if(typeof insertion === 'string') {
+        socket.replaceWith(insertion);
+    } else {
+        const component = Array.isArray(insertion) ? mergeComponents(insertion) : insertion;
+        socket.replaceWith(component.fragment);
+    }
 }
