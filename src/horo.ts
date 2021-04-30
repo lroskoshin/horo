@@ -1,4 +1,4 @@
-import { insertValue } from './insert-value';
+import { insertValue } from './insertions/insert-value';
 import { Component, Instertions } from './insertions/insertions';
 import { joiner } from './joiner';
 import { listenEvent } from './listen-event';

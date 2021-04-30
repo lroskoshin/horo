@@ -10,13 +10,13 @@ export interface Component {
     delete(): void;
     fragment: DocumentFragment;
 }
-export type StaticInsertion = string | Component;
-export type DynamicInsertion = Subscribable<string | Component>;
+export type StaticInsertion = string | Component | Component[];
+export type DynamicInsertion = Subscribable<string | Component | Component[]>;
 export type ValueInsertion = DynamicInsertion | StaticInsertion;
 export type Instertions = Subscription<Event> | ValueInsertion;
 // TO-DO: Optimize type guarding
 export function isStationInsertion(insertion: Instertions): insertion is StaticInsertion {
-    return typeof insertion === 'string' || 'fragment' in insertion;
+    return typeof insertion === 'string' || 'fragment' in insertion || Array.isArray(insertion);
 }
 export function isDynamicInsertion(insertion: Instertions): insertion is StaticInsertion {
     return typeof insertion !== 'string' && 'subscribe' in insertion && typeof insertion.subscribe === 'function';
@@ -26,7 +26,7 @@ export function ensureValueInsertion(instertion: Instertions): ValueInsertion {
     if(isStationInsertion(instertion) ||  isDynamicInsertion(instertion)) {
         return instertion;
     } 
-    throw new Error('The passed value is not a Subscribable.');
+    throw new Error('The passed value is not Instertable.');
 } 
 
 export function ensureSubscription(instertion: Instertions): Subscription<unknown> {

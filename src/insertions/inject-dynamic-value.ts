@@ -1,31 +1,8 @@
-import { Instertions, Component, DynamicInsertion, ensureValueInsertion, isStationInsertion, StaticInsertion } from './insertions/insertions';
-interface InsertionAddress {
-    start: Node,
-    end: Node,
-}
+import { mergeComponents } from '../merge-components';
+import { InsertionAddress } from './insertion-adress';
+import { Component, DynamicInsertion } from './insertions';
 
-type ArrayWithStringIndex<T> = T[] & {
-    [index: string]: T;
-}
-
-export function insertValue(fragment: DocumentFragment, insertions: Instertions[]): void {
-    const socketsForIsnert = fragment.querySelectorAll('[data-index]');
-    socketsForIsnert.forEach((socket: Element) => {
-        const index = socket.getAttribute('data-index') as string;
-        const insertion = ensureValueInsertion((insertions as ArrayWithStringIndex<Instertions>)[index]);
-        if(isStationInsertion(insertion)) {
-            injectStaticValue(socket, insertion);
-        } else {
-            injectDynamicValue(socket, insertion);
-        }
-    });
-}
-
-function injectStaticValue(socket: Element, insertion: StaticInsertion): void {
-    socket.replaceWith(typeof insertion === 'string' ? insertion : insertion.fragment);
-}
-
-function injectDynamicValue(socket: Element, insertion: DynamicInsertion): void {
+export function injectDynamicValue(socket: Element, insertion: DynamicInsertion): void {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     let lastDestroyer = () => {};
     // Временное решение, возможно нужно будет перейти на Range целиком. 
@@ -37,15 +14,16 @@ function injectDynamicValue(socket: Element, insertion: DynamicInsertion): void 
     };
     const currentRange = document.createRange();
     
-    insertion.subscribe((value: Component | string) => {
+    insertion.subscribe((value: Component | string | Component[]) => {
         currentRange.setStartBefore(address.start);
         currentRange.setEndAfter(address.end);
         if(typeof value === 'string') {
             address = injectDynamicText(currentRange, value);
         } else {
-            address = injectDynamicComponent(currentRange, value);
+            const component = Array.isArray(value) ? mergeComponents(value) : value;
+            address = injectDynamicComponent(currentRange, component);
             lastDestroyer();
-            lastDestroyer = value.delete;
+            lastDestroyer = component.delete;
         }
     });
 }
