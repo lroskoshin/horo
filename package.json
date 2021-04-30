@@ -7,7 +7,7 @@
   ],
   "main": "dist/index.umd.js",
   "module": "dist/index.es5.js",
-  "typings": "dist/types/index.d.ts",
+  "typings": "dist/types/index.es5.d.ts",
   "scripts": {
     "test": "jest",
     "build": "rollup -c rollup.config.ts",
