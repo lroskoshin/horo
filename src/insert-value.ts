@@ -1,21 +1,31 @@
-import { ensureSubscribable, Instertions, Subscribable, Component } from './insertions/insertions';
-
+import { Instertions, Component, DynamicInsertion, ensureValueInsertion, isStationInsertion, StaticInsertion } from './insertions/insertions';
 interface InsertionAddress {
     start: Node,
     end: Node,
 }
 
-export function insertReactiveNode(fragment: DocumentFragment, insertions: Instertions[]): void {
+type ArrayWithStringIndex<T> = T[] & {
+    [index: string]: T;
+}
+
+export function insertValue(fragment: DocumentFragment, insertions: Instertions[]): void {
     const socketsForIsnert = fragment.querySelectorAll('[data-index]');
     socketsForIsnert.forEach((socket: Element) => {
-        const index = parseInt(socket.getAttribute('data-index') as string);
-        const insertion = ensureSubscribable(insertions[index]);
-        inject(socket, insertion);
-        
+        const index = socket.getAttribute('data-index') as string;
+        const insertion = ensureValueInsertion((insertions as ArrayWithStringIndex<Instertions>)[index]);
+        if(isStationInsertion(insertion)) {
+            injectStaticValue(socket, insertion);
+        } else {
+            injectDynamicValue(socket, insertion);
+        }
     });
 }
 
-function inject(socket: Element, insertion: Subscribable<Component | string>) {
+function injectStaticValue(socket: Element, insertion: StaticInsertion): void {
+    socket.replaceWith(typeof insertion === 'string' ? insertion : insertion.fragment);
+}
+
+function injectDynamicValue(socket: Element, insertion: DynamicInsertion): void {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     let lastDestroyer = () => {};
     // Временное решение, возможно нужно будет перейти на Range целиком. 
@@ -31,16 +41,16 @@ function inject(socket: Element, insertion: Subscribable<Component | string>) {
         currentRange.setStartBefore(address.start);
         currentRange.setEndAfter(address.end);
         if(typeof value === 'string') {
-            address = injectText(currentRange, value);
+            address = injectDynamicText(currentRange, value);
         } else {
-            address = injectComponent(currentRange, value);
+            address = injectDynamicComponent(currentRange, value);
             lastDestroyer();
             lastDestroyer = value.delete;
         }
     });
 }
 
-function injectText(range: Range, value: string): InsertionAddress {
+function injectDynamicText(range: Range, value: string): InsertionAddress {
     const textNode = document.createTextNode(value);
     range.deleteContents();
     range.insertNode(textNode);
@@ -51,7 +61,7 @@ function injectText(range: Range, value: string): InsertionAddress {
     };
 }
 
-function injectComponent(range: Range, value: Component): InsertionAddress {
+function injectDynamicComponent(range: Range, value: Component): InsertionAddress {
     range.deleteContents();
     const address: InsertionAddress = {
         start: value.fragment.firstChild as Node,

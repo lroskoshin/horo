@@ -1,5 +1,5 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment jsdom-latest
  */
  import { horo } from '../src/horo';
  
