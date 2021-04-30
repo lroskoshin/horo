@@ -10,12 +10,20 @@ export interface Component {
     delete(): void;
     fragment: DocumentFragment;
 }
-export type StaticInsertion = string | Component;
-export type DynamicInsertion = Subscribable<string | Component>
-export type Instertions = Subscribable<string | Component> | Subscription<Event> | StaticInsertion;
+export type StaticInsertion = (string & {fragment: undefined}) | Component;
+export type DynamicInsertion = Subscribable<string | Component>;
+export type ValueInsertion = DynamicInsertion | StaticInsertion;
+export type Instertions = Subscription<Event> | ValueInsertion;
+// TO-DO: Optimize type guarding
+export function isStationInsertion(insertion: Instertions): insertion is StaticInsertion {
+    return typeof insertion === 'string' || 'fragment' in insertion;
+}
+export function isDynamicInsertion(insertion: Instertions): insertion is StaticInsertion {
+    return typeof insertion !== 'string' && 'subscribe' in insertion && typeof insertion.subscribe === 'function';
+}
 
-export function ensureSubscribable(instertion: Instertions): DynamicInsertion {
-    if(typeof instertion !== 'string' && 'subscribe' in instertion && typeof instertion.subscribe === 'function') {
+export function ensureValueInsertion(instertion: Instertions): ValueInsertion {
+    if(isStationInsertion(instertion) ||  isDynamicInsertion(instertion)) {
         return instertion;
     } 
     throw new Error('The passed value is not a Subscribable.');
