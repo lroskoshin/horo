@@ -10,7 +10,7 @@ export interface Component {
     delete(): void;
     fragment: DocumentFragment;
 }
-export type StaticInsertion = (string & {fragment: undefined}) | Component;
+export type StaticInsertion = string | Component;
 export type DynamicInsertion = Subscribable<string | Component>;
 export type ValueInsertion = DynamicInsertion | StaticInsertion;
 export type Instertions = Subscription<Event> | ValueInsertion;

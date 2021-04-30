@@ -22,7 +22,7 @@ export function insertValue(fragment: DocumentFragment, insertions: Instertions[
 }
 
 function injectStaticValue(socket: Element, insertion: StaticInsertion): void {
-    socket.replaceWith(insertion['fragment'] ?? insertion);
+    socket.replaceWith(typeof insertion === 'string' ? insertion : insertion.fragment);
 }
 
 function injectDynamicValue(socket: Element, insertion: DynamicInsertion): void {
