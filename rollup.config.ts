@@ -1,4 +1,5 @@
 import ts from '@wessberg/rollup-plugin-ts';
+import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 const config = {
     input: './src/horo.ts',
@@ -7,7 +8,8 @@ const config = {
         { file: pkg.module, format: 'es', sourcemap: true },
     ],
     plugins: [
-        ts()
+        ts(),
+        terser()
     ]
 };
 export default config;
