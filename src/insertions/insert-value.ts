@@ -1,4 +1,4 @@
-import { Instertions, Component, DynamicInsertion, ensureValueInsertion, isStationInsertion, StaticInsertion } from './insertions/insertions';
+import { Instertions, Component, DynamicInsertion, ensureValueInsertion, isStationInsertion, StaticInsertion } from './insertions';
 interface InsertionAddress {
     start: Node,
     end: Node,
