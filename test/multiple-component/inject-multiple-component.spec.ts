@@ -18,7 +18,6 @@ import { mount } from './test-multiple-components';
 
     it('Dynamic component insertion', () => {
         const fooBarDiv = getByTestId(element, 'foo-bar');
-        console.log(fooBarDiv.innerHTML);
         expect(fooBarDiv.children[0]).toHaveTextContent('Foo');
         expect(fooBarDiv.children[1]).toHaveTextContent('Bar');
     });
