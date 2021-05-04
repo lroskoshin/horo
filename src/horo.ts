@@ -1,17 +1,16 @@
 import { insertValue } from './insertions/insert-value';
 import { Component, Instertions } from './insertions/insertions';
-import { joiner } from './joiner';
 import { listenEvent } from './listen-event';
+import { parseTemplate } from './parser/parse-template';
 
 export function horo(template: TemplateStringsArray, ...insertions: Instertions[]): Component {
-    const root = document.createElement('template');
-    root.innerHTML = joiner(template);
-    insertValue(root.content, insertions);
-    listenEvent(root.content, insertions);
+    const root = parseTemplate(template, insertions);
+    insertValue(root, insertions);
+    listenEvent(root, insertions);
     return {
         delete: () => {
             console.log('delete');
         },
-        fragment: root.content,
+        fragment: root,
     };
 }
