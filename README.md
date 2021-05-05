@@ -1,4 +1,7 @@
 # Horo
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4a0a4d4efbd845bf9c29fb7f1a429272)](https://app.codacy.com/gh/lroskoshin/horo?utm_source=github.com&utm_medium=referral&utm_content=lroskoshin/horo&utm_campaign=Badge_Grade_Settings)
+
 Micro lib for DOM without virtual DOM.
 
 ![Actions CI](https://github.com/lroskoshin/horo/actions/workflows/ci.yml/badge.svg)
