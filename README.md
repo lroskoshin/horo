@@ -4,6 +4,7 @@ Micro lib for DOM without virtual DOM.
 ![Actions CI](https://github.com/lroskoshin/horo/actions/workflows/ci.yml/badge.svg)
 ![NPM Version](https://img.shields.io/npm/v/horojs)
 ![Min Zip](https://img.shields.io/bundlephobia/minzip/horojs)
+![Code Coverage](https://img.shields.io/codecov/c/github/lroskoshin/horo/main)
 ## The Why
 Why not?
 ## Usage
