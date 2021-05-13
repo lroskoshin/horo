@@ -3,3 +3,5 @@ Todos:
         ☐ Make reactive attrs
         ☐ Impove template parsing
         ☐ Component unsubscribing
+        ☐ Directives
+        ☐ Plugin for rollup
