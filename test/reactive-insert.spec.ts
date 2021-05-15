@@ -11,7 +11,7 @@ describe('Reactive Insert RxJS', () => {
 
     let spy: jasmine.Spy;
     const originalSubscribe = subject.subscribe.bind(subject);
-    const newSubscribe = (...args: unknown[]): Subscription => {
+    const newSubscribe = (...args: never[]): Subscription => {
         const subscription = originalSubscribe(...args);
         spy = spyOn(subscription, 'unsubscribe');
         return subscription; 
