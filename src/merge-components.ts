@@ -5,6 +5,6 @@ export function mergeComponents(components: Component[]): Component {
     root.append(...components.map((component: Component) => component.fragment));
     return {
         fragment: root,
-        delete: () => components.forEach((component: Component) => component.delete())
+        unsubscribe: () => components.forEach((component: Component) => component.unsubscribe())
     };
 }

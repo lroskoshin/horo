@@ -1,16 +1,27 @@
 /**
  * @jest-environment jsdom-latest
  */
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Subscription } from 'rxjs';
 import { horo } from '../src/horo';
+import { Component } from '../src/insertions/insertions';
 
 describe('Reactive Insert RxJS', () => {
+    let component: Component;
     const subject = new ReplaySubject<string>();
+
+    let spy: jasmine.Spy;
+    const originalSubscribe = subject.subscribe.bind(subject);
+    const newSubscribe = (...args: never[]): Subscription => {
+        const subscription = originalSubscribe(...args);
+        spy = spyOn(subscription, 'unsubscribe');
+        return subscription; 
+    };
+    subject.subscribe = newSubscribe;
     subject.next('1');
     const element = document.createElement('div');
 
     beforeAll(() => {
-        const component = horo`
+        component = horo`
         <div>
             ${subject}
         </div>
@@ -25,5 +36,10 @@ describe('Reactive Insert RxJS', () => {
     it('Update Text', () => {
         subject.next('2');
         expect(element).toHaveTextContent('2');
+    });
+
+    it('Unsubscribe', () => {
+        component.unsubscribe();
+        expect(spy).toHaveBeenCalled();
     });
 });

@@ -2,7 +2,7 @@ Todos:
     New:
         ☐ Make reactive attrs
         ☐ Impove template parsing
-        ☐ Component unsubscribing
+        ☐ Test for unsubscribing
         ☐ Directives
         ☐ Plugin for rollup
         ☐ Immediately static insertion

@@ -1,5 +1,11 @@
+export type Unsubscriber = () => void;
+
+export type Unsubscribable = {
+    unsubscribe: Unsubscriber;
+}
+
 export type Subscribable<T> = {
-    subscribe(listner: (value: T) => void): void;
+    subscribe(listner: (value: T) => void): Unsubscribable;
 };
 
 export type Subscription<T> = {
@@ -7,7 +13,7 @@ export type Subscription<T> = {
 };
 
 export interface Component {
-    delete(): void;
+    unsubscribe(): void;
     fragment: DocumentFragment;
 }
 export type StaticInsertion = string | Component | Component[];
