@@ -1,9 +1,11 @@
 export type Subscribable<T> = {
     subscribe(listner: (value: T) => void): void;
+    unsubscribe(): void;
 };
 
 export type Subscription<T> = {
     next(value: T): void;
+    unsubscribe(): void;
 };
 
 export interface Component {
