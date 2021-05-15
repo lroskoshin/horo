@@ -2,11 +2,11 @@ import { mergeComponents } from '../merge-components';
 import { InsertionAddress } from './insertion-adress';
 import { Component, DynamicInsertion } from './insertions';
 
-export function injectDynamicValue(socket: Element, insertion: DynamicInsertion): void {
+export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion): void {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     let lastDestroyer = () => {};
     // Временное решение, возможно нужно будет перейти на Range целиком. 
-    // Пока это не возможно так как вставка корневого DocumentFragment его очищает,
+    // Пока это не возможно так как вставка корневого DocumentFragment очищает сам фрагмент,
     // что приводит к потери указателя.
     let address: InsertionAddress = {
         end: socket,

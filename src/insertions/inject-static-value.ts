@@ -1,7 +1,7 @@
 import { StaticInsertion } from './insertions';
 import { mergeComponents } from '../merge-components';
 
-export function injectStaticValue(socket: Element, insertion: StaticInsertion): void {
+export function injectStaticValue(socket: Comment, insertion: StaticInsertion): void {
     if(typeof insertion === 'string') {
         socket.replaceWith(insertion);
     } else {
