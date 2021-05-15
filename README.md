@@ -50,4 +50,3 @@ const component = horo`
     </div>
 `;
 ```
-
