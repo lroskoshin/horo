@@ -1,5 +1,7 @@
+export type Unsubscriber = () => void;
+
 export type Unsubscribable = {
-    unsubscribe(): void;
+    unsubscribe: Unsubscriber;
 }
 
 export type Subscribable<T> = {
