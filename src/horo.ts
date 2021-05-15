@@ -8,9 +8,9 @@ export function horo(template: TemplateStringsArray, ...insertions: Instertions[
     insertValue(root, insertions);
     listenEvent(root, insertions);
     return {
+        fragment: root,
         delete: () => {
             console.log('delete');
         },
-        fragment: root,
     };
 }
