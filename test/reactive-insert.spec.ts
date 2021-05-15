@@ -3,14 +3,16 @@
  */
 import { ReplaySubject } from 'rxjs';
 import { horo } from '../src/horo';
+import { Component } from '../src/insertions/insertions';
 
 describe('Reactive Insert RxJS', () => {
+    let component: Component;
     const subject = new ReplaySubject<string>();
     subject.next('1');
     const element = document.createElement('div');
 
     beforeAll(() => {
-        const component = horo`
+        component = horo`
         <div>
             ${subject}
         </div>
@@ -25,5 +27,11 @@ describe('Reactive Insert RxJS', () => {
     it('Update Text', () => {
         subject.next('2');
         expect(element).toHaveTextContent('2');
+    });
+
+    it('Unsubscribe', () => {
+        const spy = spyOn(subject, 'unsubscribe');
+        component.unsubscribe();
+        expect(spy).toHaveBeenCalled();
     });
 });
