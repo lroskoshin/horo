@@ -6,12 +6,10 @@ export type Unsubscribable = {
 
 export type Subscribable<T> = {
     subscribe(listner: (value: T) => void): Unsubscribable;
-    
 };
 
 export type Subscription<T> = {
-    next(value: T): Unsubscribable;
-    
+    next(value: T): void;
 };
 
 export interface Component {
