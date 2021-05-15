@@ -5,12 +5,13 @@ import { parseTemplate } from './parser/parse-template';
 
 export function horo(template: TemplateStringsArray, ...insertions: Instertions[]): Component {
     const root = parseTemplate(template, insertions);
-    insertValue(root, insertions);
-    listenEvent(root, insertions);
+    const unsubscribeReactiveValues = insertValue(root, insertions);
+    const unsubscribeEventHandler = listenEvent(root, insertions);
     return {
         fragment: root,
         unsubscribe: () => {
-            console.log('delete');
-        },
+            unsubscribeEventHandler();
+            unsubscribeReactiveValues();
+        }
     };
 }
