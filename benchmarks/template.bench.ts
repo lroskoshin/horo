@@ -14,7 +14,7 @@ export function templateBenchamrk(): void {
     .add('Query Selector', () => {
         querySelector(root);
     })
-    .on('cycle', function(event: any) {
+    .on('cycle', function(event: unknown) {
         console.log(String(event.target));
     })
     .on('complete', function(this: Suite) {
