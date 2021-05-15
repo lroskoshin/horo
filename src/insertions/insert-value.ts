@@ -21,7 +21,7 @@ export function insertValue(fragment: DocumentFragment, insertions: Instertions[
         const insertionIndex = socket.textContent as string;
         const insertion = ensureValueInsertion((insertions as ArrayWithStringIndex<Instertions>)[insertionIndex]);
         if(isStationInsertion(insertion)) {
-            injectStaticValue(socket, insertion);
+            unsubscribes.push(injectStaticValue(socket, insertion));
         } else {
             unsubscribes.push(injectDynamicValue(socket, insertion));
         }
