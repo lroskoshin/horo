@@ -23,7 +23,7 @@ export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion)
             const component = Array.isArray(value) ? mergeComponents(value) : value;
             address = injectDynamicComponent(currentRange, component);
             lastDestroyer();
-            lastDestroyer = component.delete;
+            lastDestroyer = component.unsubscribe;
         }
     });
 }

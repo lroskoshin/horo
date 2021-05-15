@@ -9,7 +9,7 @@ export function horo(template: TemplateStringsArray, ...insertions: Instertions[
     listenEvent(root, insertions);
     return {
         fragment: root,
-        delete: () => {
+        unsubscribe: () => {
             console.log('delete');
         },
     };

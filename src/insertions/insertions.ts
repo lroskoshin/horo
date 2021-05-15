@@ -7,7 +7,7 @@ export type Subscription<T> = {
 };
 
 export interface Component {
-    delete(): void;
+    unsubscribe(): void;
     fragment: DocumentFragment;
 }
 export type StaticInsertion = string | Component | Component[];
