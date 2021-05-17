@@ -47,7 +47,7 @@ const text = input.pipe(
 );
 const component = horo`
     <div>
-        <input data-event-input=${input} data-testid="input"></input>
+        <input data-event-input=${input}></input>
         <span>${text}</span>
     </div>
 `;
