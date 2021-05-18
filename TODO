@@ -6,3 +6,4 @@ Todos:
         ☐ Directives
         ☐ Plugin for rollup
         ☐ Immediately static insertion
+        ☐ Make keep-alive components(add "function" as insertion type)
