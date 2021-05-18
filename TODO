@@ -7,3 +7,4 @@ Todos:
         ☐ Plugin for rollup
         ☐ Immediately static insertion
         ☐ Make keep-alive components(add "function" as insertion type)
+        ☐ Migrate to function type insertion
