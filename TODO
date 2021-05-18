@@ -1,10 +1,7 @@
 Todos:
     New:
         ☐ Make reactive attrs
-        ☐ Impove template parsing
-        ☐ Test for unsubscribing
-        ☐ Directives
+        ☐ Impove template parsing(inputs)
         ☐ Plugin for rollup
-        ☐ Immediately static insertion
         ☐ Make keep-alive components(add "function" as insertion type)
-        ☐ Migrate to function type insertion
+        ☐ Migrate to function type insertion and handlers
