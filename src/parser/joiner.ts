@@ -10,9 +10,9 @@ export function joiner(template: TemplateStringsArray): string {
         if(dataAttr === null) {
             result =`${result}<!--${insertionPrefix}${index-1}-->${currentChunk}`;
         } else if(dataAttr[2].startsWith(eventHandlingPrefix)) {
-            result =`${result.replace(attrsPatter, `<!--$2:${index-1}-->$1`)}${currentChunk.substring(1)}`;
+            result =`${result.replace(attrsPatter, `<!--$2:${index-1}-->$1`)}${currentChunk.replace(/^(["])/m, '')}`;
         } else {
-            result = `${result.replace(attrsPatter, `<!--${attrsPrefix}$2:${index-1}-->$1`)}${currentChunk.substring(1)}`;
+            result = `${result.replace(attrsPatter, `<!--${attrsPrefix}$2:${index-1}-->$1`)}${currentChunk.replace(/^(["])/m, '')}`;
         }
     }
     return result;
