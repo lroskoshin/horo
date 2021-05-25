@@ -1,4 +1,4 @@
-import { eventHandlingPrefixLength, insertionPrefixLength, isEventHandlingInstruction, isInsertionInsctruction } from 'src/instruction';
+import { eventHandlingPrefixLength, insertionPrefixLength, isEventHandlingInstruction, isInsertionInsctruction } from '../instruction';
 import { insertValue } from '../insertion/insert-value';
 import { ensureSubscription, ensureValueInsertion, Instertion, Unsubscriber } from '../insertion/insertion';
 import { listenEvent } from '../listen-event';
