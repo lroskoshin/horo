@@ -17,8 +17,6 @@ describe('Join template', () => {
         expect(joinedTemplate).toEqual(expect.stringContaining('<!--@click:1-->'));
         expect(joinedTemplate).toEqual(expect.stringContaining('<!--insert:2-->'));
         expect(joinedTemplate).toEqual(expect.stringContaining('id="foo"'));
-
-        console.log(joinedTemplate);
     });
 });
 
