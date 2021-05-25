@@ -1,9 +1,9 @@
 export const insertionPrefix = 'insert:';
 export const insertionPrefixLength = insertionPrefix.length;
-export const eventHandlingPrefix = 'listen:';
-export const eventHandlingPrefixLength = insertionPrefix.length;
+export const eventHandlingPrefix = '@';
+export const eventHandlingPrefixLength = eventHandlingPrefix.length;
 export const attrsPrefix = 'attrs:';
-export const attrsPrefixLength = insertionPrefix.length;
+export const attrsPrefixLength = attrsPrefix.length;
 
 export function isInsertionInsctruction(instruction: string): boolean {
     return instruction.startsWith(insertionPrefix);

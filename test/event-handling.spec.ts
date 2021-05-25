@@ -22,7 +22,7 @@ describe('Event Handling RxJS', () => {
     beforeAll(() => {
         const component = horo`
         <div>
-            <input data-event-input=${input} data-testid="input"></input>
+            <input @input=${input} data-testid="input"></input>
             <span>${text}</span>
         </div>
         `;

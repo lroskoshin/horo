@@ -1,8 +1,9 @@
-import { eventHandlingPrefixLength, insertionPrefixLength, isEventHandlingInstruction, isInsertionInsctruction } from '../instruction';
+import { attrsPrefixLength, eventHandlingPrefixLength, insertionPrefixLength, isAttrsInstruction, isEventHandlingInstruction, isInsertionInsctruction } from '../instruction';
 import { insertValue } from '../insertion/insert-value';
-import { ensureSubscription, ensureValueInsertion, Instertion, Unsubscriber } from '../insertion/insertion';
+import { ensureSubscription, ensureValueInsertion, Instertion, Subscribable, Unsubscriber } from '../insertion/insertion';
 import { listenEvent } from '../listen-event';
 import { getSocketsForReactivity } from './get-sockets-for-reactivity';
+import { insertAttr } from '../insertion/insert-attr';
 
 export type ArrayWithStringIndex<T> = T[] & {
     [index: string]: T;
@@ -20,8 +21,12 @@ export function makeItReactive(fragment: DocumentFragment, insertions: ArrayWith
             unsubscribes.push(insertValue(socket, insertion));
         } else if (isEventHandlingInstruction(instruction)) {
             const [eventName, insertionIndex] = instruction.substring(eventHandlingPrefixLength).split(':');
-            const subscripption = ensureSubscription(insertions[insertionIndex]);
-            unsubscribes.push(listenEvent(socket.nextElementSibling as Element, eventName, subscripption));
+            const subscription = ensureSubscription(insertions[insertionIndex]);
+            unsubscribes.push(listenEvent(socket.nextElementSibling as Element, eventName, subscription));
+        } else if (isAttrsInstruction(instruction)) {
+            const [attrName, insertionIndex] = instruction.substring(attrsPrefixLength).split(':');
+            const insertion = ensureValueInsertion(insertions[insertionIndex]);
+            unsubscribes.push(insertAttr(socket.nextElementSibling as Element, attrName, insertion as string | Subscribable<string>));
         }
     }
     return () => {

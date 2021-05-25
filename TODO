@@ -5,3 +5,5 @@ Todos:
         ☐ Plugin for rollup
         ☐ Make keep-alive components(add "function" as insertion type)
         ☐ Migrate to function type insertion and handlers
+        ☐ Migrate to node attr(optimize attributes)
+        ☐ Migrate to text node(optimize string insertion)

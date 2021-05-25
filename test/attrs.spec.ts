@@ -32,6 +32,7 @@ describe('Reactive Insert RxJS', () => {
             </div>
         `;
         element.appendChild(component.fragment);
+        console.log(element.innerHTML);
     });
 
     it('Init Text', () => {
