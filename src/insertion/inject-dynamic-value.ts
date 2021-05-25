@@ -1,6 +1,6 @@
 import { mergeComponents } from '../merge-components';
-import { InsertionAddress } from './insertion-adress';
-import { Component, DynamicInsertion, Unsubscriber } from './insertions';
+import { InsertionAddress } from './insertion-address';
+import { Component, DynamicInsertion, Unsubscriber } from './insertion';
 
 export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion): Unsubscriber {
     // eslint-disable-next-line @typescript-eslint/no-empty-function

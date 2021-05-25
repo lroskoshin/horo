@@ -1,17 +1,12 @@
-import { insertValue } from './insertions/insert-value';
-import { Component, Instertions } from './insertions/insertions';
-import { listenEvent } from './listen-event';
+import { Component, Instertion } from './insertion/insertion';
+import { ArrayWithStringIndex, makeItReactive } from './reactivity/make-it-reactive';
 import { parseTemplate } from './parser/parse-template';
 
-export function horo(template: TemplateStringsArray, ...insertions: Instertions[]): Component {
-    const root = parseTemplate(template, insertions);
-    const unsubscribeReactiveValues = insertValue(root, insertions);
-    const unsubscribeEventHandler = listenEvent(root, insertions);
+export function horo(template: TemplateStringsArray, ...insertions: Instertion[]): Component {
+    const fragment = parseTemplate(template, insertions);
+    const unsubscribe = makeItReactive(fragment, insertions as ArrayWithStringIndex<Instertion>);
     return {
-        fragment: root,
-        unsubscribe: () => {
-            unsubscribeEventHandler();
-            unsubscribeReactiveValues();
-        }
+        fragment,
+        unsubscribe,
     };
 }

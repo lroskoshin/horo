@@ -1,6 +1,6 @@
 import { Observable, ReplaySubject } from 'rxjs';
 import { horo } from '../../src/horo';
-import { Component } from '../../src/insertions/insertions';
+import { Component } from '../../src/insertion/insertion';
 
 export function mount(root: Element): void {
     const component = horo`

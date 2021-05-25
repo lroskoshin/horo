@@ -26,7 +26,7 @@
     beforeAll(() => {
         const component = horo`
         <div>
-            <input type="checkbox" data-event-click=${checked} data-testid="checkbox"></input>
+            <input type="checkbox" @click=${checked} data-testid="checkbox"></input>
             <span>${text}</span>
         </div>
         `;

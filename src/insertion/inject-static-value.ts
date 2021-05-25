@@ -1,4 +1,4 @@
-import { StaticInsertion, Unsubscriber } from './insertions';
+import { StaticInsertion, Unsubscriber } from './insertion';
 import { mergeComponents } from '../merge-components';
 
 export function injectStaticValue(socket: Comment, insertion: StaticInsertion): Unsubscriber {
