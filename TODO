@@ -1,7 +1,6 @@
 Todos:
     New:
         ☐ Make reactive attrs
-        ☐ Impove template parsing(inputs)
         ☐ Plugin for rollup
         ☐ Make keep-alive components(add "function" as insertion type)
         ☐ Migrate to function type insertion and handlers
