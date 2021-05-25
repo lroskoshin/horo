@@ -1,5 +1,5 @@
 import { mergeComponents } from '../merge-components';
-import { InsertionAddress } from './insertion-adress';
+import { InsertionAddress } from './insertion-address';
 import { Component, DynamicInsertion, Unsubscriber } from './insertion';
 
 export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion): Unsubscriber {
