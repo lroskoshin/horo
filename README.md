@@ -11,6 +11,42 @@ Why not?
 ## Usage
 Horo doesn't have herself own state management. And we should use Horo with other libs for this.
 For example, Horo looks good with RxJS.
+### Simple static insertion
+You can insert static value in you template.
+```typescript
+const staticHelloWorld = 'hello world'; // horo accepts, for static insertion, only strings
+const component = horo`
+    <div>
+        <span>${staticHelloWorld}</span>
+    </div>
+`;
+```
+### Simple dynamic insertion
+Also you can insert dynamic value and interact with this.
+```typescript
+// horo accepts, for dynamic insertion, only Subscriable<string|Component>
+// RxJS Subscriable compatibility 
+const dynamicHelloWorld = new ReplaySubject<string>();
+dynamicHelloWorld.next('Hello '); // Initilize value
+const component = horo`
+    <div>
+        <span>${dynamicHelloWorld}</span>
+    </div>
+`;
+dynamicHelloWorld.next('Wolrd!'); // horo will change the value in the DOM on its own.
+```
+### Attributes
+Similar to simple inserts, you can manipulate attributes. 
+```typescript
+const visibilityClass = new ReplaySubject<string>();
+visibilityClass.next('show');
+const component = horo`
+    <p class="${visibilityClass}">
+        Hello Wolrd! 
+    </p>
+`;
+visibilityClass.next('hide');
+```
 ### Kinda sorta Components
 ```typescript
 import { Observable, ReplaySubject } from 'rxjs';
@@ -28,13 +64,13 @@ export function mount(root: Element): void {
 function HelloWorldComponent(): Observable<Component> {
     const component = new ReplaySubject<Component>();
     component.next(horo`
-        <span> Hello World! <span>
+        <span> Hello World! </span>
     `);
     return component;
 }
 ```
 Now you just need to call mount on the root element, as you would with Vue/React/Angular application.
-Or any other place you want. Why not?
+Or any other place you want.
 
 ### Event Handling
 ```typescript
