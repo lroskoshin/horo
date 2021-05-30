@@ -1,4 +1,4 @@
-import { Component } from './insertion/insertion';
+import { Component } from '../insertion/insertion';
 
 export function mergeComponents(components: Component[]): Component {
     const root = document.createDocumentFragment();

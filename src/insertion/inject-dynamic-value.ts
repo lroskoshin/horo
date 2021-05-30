@@ -1,4 +1,4 @@
-import { mergeComponents } from '../merge-components';
+import { mergeComponents } from '../utils/merge-components';
 import { InsertionAddress } from './insertion-address';
 import { Component, DynamicInsertion, Unsubscriber } from './insertion';
 

@@ -1,5 +1,5 @@
 import { StaticInsertion, Unsubscriber } from './insertion';
-import { mergeComponents } from '../merge-components';
+import { mergeComponents } from '../utils/merge-components';
 
 export function injectStaticValue(socket: Comment, insertion: StaticInsertion): Unsubscriber {
     if(typeof insertion === 'string') {
