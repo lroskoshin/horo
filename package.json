@@ -2,6 +2,7 @@
   "name": "horojs",
   "version": "1.0.3",
   "description": "Micro lib for DOM without virtual DOM.",
+  "keywords": ["frontend", "horo", "microlib", "dom", "ui", "templates", "reactive"],
   "files": [
     "dist"
   ],
