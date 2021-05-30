@@ -1,7 +1,7 @@
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { horo } from '../../src/horo';
-import { mergeComponents } from '../../src/utils';
+import { mergeComponents } from '../../src/utils/merge-components';
 import { Component } from '../../src/insertion/insertion';
 
 export function mount(root: Element): void {
