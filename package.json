@@ -1,6 +1,6 @@
 {
   "name": "horojs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Micro lib for DOM without virtual DOM.",
   "files": [
     "dist"
