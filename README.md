@@ -2,7 +2,7 @@
 Micro lib for DOM without virtual DOM.
 
 ![Actions CI](https://github.com/lroskoshin/horo/actions/workflows/ci.yml/badge.svg)
-![NPM Version](https://img.shields.io/npm/v/horojs)
+[![NPM Version](https://www.npmjs.com/package/horojs)](https://img.shields.io/npm/v/horojs)
 ![Min Zip](https://img.shields.io/bundlephobia/minzip/horojs)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a50f4489700e445aa5a9ce63ab1b315d)](https://www.codacy.com/gh/lroskoshin/horo/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lroskoshin/horo&amp;utm_campaign=Badge_Grade)
 ![Code Coverage](https://img.shields.io/codecov/c/github/lroskoshin/horo/main)
