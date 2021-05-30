@@ -16,13 +16,13 @@ export interface Component {
     unsubscribe(): void;
     fragment: DocumentFragment;
 }
-export type StaticInsertion = string | Component | Component[];
-export type DynamicInsertion = Subscribable<string | Component | Component[]>;
+export type StaticInsertion = string | Component;
+export type DynamicInsertion = Subscribable<string | Component>;
 export type ValueInsertion = DynamicInsertion | StaticInsertion;
 export type Instertion = Subscription<Event> | ValueInsertion;
 // TO-DO: Optimize type guarding
 export function isStaticInsertion(insertion: Instertion): insertion is StaticInsertion {
-    return typeof insertion === 'string' || 'fragment' in insertion || Array.isArray(insertion);
+    return typeof insertion === 'string' || 'fragment' in insertion;
 }
 export function isDynamicInsertion(insertion: Instertion): insertion is StaticInsertion {
     return typeof insertion !== 'string' && 'subscribe' in insertion && typeof insertion.subscribe === 'function';

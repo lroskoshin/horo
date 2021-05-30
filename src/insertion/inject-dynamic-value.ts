@@ -1,4 +1,3 @@
-import { mergeComponents } from '../merge-components';
 import { InsertionAddress } from './insertion-address';
 import { Component, DynamicInsertion, Unsubscriber } from './insertion';
 
@@ -14,16 +13,15 @@ export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion)
     };
     const currentRange = document.createRange();
     
-    const subscription = insertion.subscribe((value: Component | string | Component[]) => {
+    const subscription = insertion.subscribe((value: Component | string) => {
         currentRange.setStartBefore(address.start);
         currentRange.setEndAfter(address.end);
         if(typeof value === 'string') {
             address = injectDynamicText(currentRange, value);
         } else {
-            const component = Array.isArray(value) ? mergeComponents(value) : value;
-            address = injectDynamicComponent(currentRange, component);
+            address = injectDynamicComponent(currentRange, value);
             lastUnsubscriber();
-            lastUnsubscriber = component.unsubscribe;
+            lastUnsubscriber = value.unsubscribe;
         }
     });
 

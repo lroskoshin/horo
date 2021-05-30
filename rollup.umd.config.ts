@@ -4,12 +4,10 @@ import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 const config: RollupOptions = {
     input: [
-        './src/index.ts',
-        './src/utils/index.ts',
-        './src/module.ts'
+        './src/index.umd.ts',
     ],
     output: [
-        { dir: pkg['modules.root'], format: 'es', sourcemap: true, esModule: true, preserveModules: true },
+        { file: pkg.main, name: 'horo', format: 'umd', sourcemap: true },
     ],
     plugins: [
         ts(),

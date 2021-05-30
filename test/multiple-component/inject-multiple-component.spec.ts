@@ -2,12 +2,31 @@
  * @jest-environment jsdom
  */
  import { getByTestId } from '@testing-library/dom';
+import { horo } from '../../src/horo';
+import { mergeComponents } from '../../src/utils/merge-components';
 import { mount } from './test-multiple-components';
 
  describe('Inject component', () => {
     const element = document.createElement('div');
     beforeAll(() => {
         mount(element);
+    });
+
+    it('Merge Components', () => {
+        const component = mergeComponents([
+            horo`
+                <span data-testid="foo"> Foo </span>
+            `,
+            horo`
+                <span data-testid="bar"> Bar </span>
+            `
+        ]);
+        const el = document.createElement('div');
+        el.appendChild(component.fragment);
+        expect(getByTestId(el, 'foo')).toHaveTextContent('Foo');
+        expect(getByTestId(el, 'bar')).toHaveTextContent('Bar');
+        expect(typeof component.unsubscribe).toEqual('function');
+        component.unsubscribe();
     });
 
     it('Static component insertion', () => {
