@@ -6,18 +6,33 @@
     "dist"
   ],
   "main": "dist/index.umd.js",
-  "module": "dist/index.es5.js",
-  "typings": "dist/types/index.es5.d.ts",
+  "module": "dist/module.js",
+  "modules.root": "dist",
+  "typings": "dist/types/module.d.ts",
   "scripts": {
     "benchmark": "ts-node ./benchmarks/index.ts",
     "test": "jest",
-    "build": "rollup -c rollup.config.js",
+    "build": "npm run build:es && npm run build:umd",
+    "build:es": "rollup -c rollup.config.js",
+    "build:umd": "rollup -c rollup.umd.config.js",
     "lint": "eslint .",
     "clean-package-json": "ts-node-script utils/clean-package-json.ts"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lroskoshin/horo.git"
+  },
+  "exports": {
+    ".": {
+      "node": "./dist/index.umd.js",
+      "default": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./utils": {
+      "node": "./dist/index.umd.js",
+      "default": "./dist/utils/index.js",
+      "import": "./dist/utils/index.js"
+    }
   },
   "author": "lroskoshin",
   "license": "ISC",
