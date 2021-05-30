@@ -11,7 +11,7 @@
   "scripts": {
     "benchmark": "ts-node ./benchmarks/index.ts",
     "test": "jest",
-    "build": "rollup -c rollup.config.ts",
+    "build": "rollup -c rollup.config.js",
     "lint": "eslint .",
     "clean-package-json": "ts-node-script utils/clean-package-json.ts"
   },
