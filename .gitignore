@@ -106,3 +106,4 @@ dist
 .tsbuildinfo
 *.js
 !rollup.config.js
+!rollup.umd.config.js
