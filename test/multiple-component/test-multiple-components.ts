@@ -1,5 +1,7 @@
 import { Observable, ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { horo } from '../../src/horo';
+import { mergeComponents } from '../../src/utils';
 import { Component } from '../../src/insertion/insertion';
 
 export function mount(root: Element): void {
@@ -9,14 +11,14 @@ export function mount(root: Element): void {
                 ${HelloWorldComponent()}
             </div>
             <div data-testid="foo-bar">
-                ${FooBarStaticComponent()}
+                ${mergeComponents(FooBarStaticComponent())}
             </div>
         </div>
     `;
     root.appendChild(component.fragment);
 }
 
-function HelloWorldComponent(): Observable<Component[]> {
+function HelloWorldComponent(): Observable<Component> {
     const component = new ReplaySubject<Component[]>();
     component.next([
         horo`
@@ -26,7 +28,9 @@ function HelloWorldComponent(): Observable<Component[]> {
             <span> World </span>
         `
     ]);
-    return component;
+    return component.pipe(
+        map(mergeComponents)
+    );
 }
 
 function FooBarStaticComponent(): Component[] {
