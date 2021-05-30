@@ -25,6 +25,8 @@ import { mount } from './test-multiple-components';
         el.appendChild(component.fragment);
         expect(getByTestId(el, 'foo')).toHaveTextContent('Foo');
         expect(getByTestId(el, 'bar')).toHaveTextContent('Bar');
+        expect(typeof component.unsubscribe).toEqual('function');
+        component.unsubscribe();
     });
 
     it('Static component insertion', () => {
