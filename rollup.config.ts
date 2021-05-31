@@ -9,7 +9,7 @@ const config: RollupOptions = {
         './src/module.ts'
     ],
     output: [
-        { dir: pkg['modules.root'], format: 'es', sourcemap: true, esModule: true, preserveModules: true },
+        { dir: pkg['modules.root'], format: 'esm', sourcemap: true, esModule: true, preserveModules: true },
     ],
     plugins: [
         ts(),
