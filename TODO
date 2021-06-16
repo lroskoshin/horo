@@ -1,6 +1,0 @@
-Todos:
-    New:
-        ☐ Plugin for rollup
-        ☐ Make keep-alive components(add "function" as insertion type)
-        ☐ Migrate to function type insertion and handlers
-        ☐ Migrate to text node(optimize string insertion)
