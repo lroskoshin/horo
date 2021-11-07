@@ -2,7 +2,15 @@
   "name": "horojs",
   "version": "1.0.4",
   "description": "A micro library for a reactive UI application.",
-  "keywords": ["frontend", "horo", "microlib", "dom", "ui", "templates", "reactive"],
+  "keywords": [
+    "frontend",
+    "horo",
+    "microlib",
+    "dom",
+    "ui",
+    "templates",
+    "reactive"
+  ],
   "files": [
     "dist"
   ],
@@ -63,6 +71,6 @@
     "rxjs": "^6.6.7",
     "ts-jest": "^26.5.5",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.4.4"
   }
 }
