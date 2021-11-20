@@ -2,29 +2,26 @@
  * @jest-environment jsdom-latest
  */
 import { getByTestId } from '@testing-library/dom';
-import { ReplaySubject, Subscription } from 'rxjs';
 import { horo } from '../src/horo';
 import { Component } from '../src/insertion/insertion';
+import { state } from '../src/utils';
 
 describe('Reactive Insert RxJS', () => {
     let component: Component;
-    const classSubject = new ReplaySubject<string>();
+    const [classes, setClasses] = state('foo');
 
-    let spy: jasmine.Spy;
-    const originalSubscribe = classSubject.subscribe.bind(classSubject);
-    const newSubscribe = (...args: never[]): Subscription => {
-        const subscription = originalSubscribe(...args);
-        spy = spyOn(subscription, 'unsubscribe');
-        return subscription; 
+    const stub: jest.Mock<void, []> = jest.fn();
+    const newSubscribe = (cb: (v: string) => void) => {
+        classes(cb);
+        return stub; 
     };
 
-    classSubject.subscribe = newSubscribe;
-    classSubject.next('foo');
+    setClasses('foo');
     const element = document.createElement('div');
 
     beforeAll(() => {
         component = horo`
-            <div data-testid="reactive" class="${classSubject}">
+            <div data-testid="reactive" class="${newSubscribe}">
                 Hello World
             </div>
             <div data-testid="static" class="${'baz'}">
@@ -39,7 +36,7 @@ describe('Reactive Insert RxJS', () => {
     });
 
     it('Update Text', () => {
-        classSubject.next('bar');
+        setClasses('bar');
         expect(getByTestId(element, 'reactive')).toHaveClass('bar');
     });
 
@@ -49,6 +46,6 @@ describe('Reactive Insert RxJS', () => {
 
     it('Unsubscribe', () => {
         component.unsubscribe();
-        expect(spy).toHaveBeenCalled();
+        expect(stub).toHaveBeenCalled();
     });
 });

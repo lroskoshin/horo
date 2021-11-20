@@ -20,6 +20,6 @@ describe('Join template', () => {
     });
 });
 
-function getTemplateChunks(template: TemplateStringsArray, ...args: unknown[]) {
+function getTemplateChunks(template: TemplateStringsArray, ..._args: unknown[]) {
     return template;
 }

@@ -1,6 +1,6 @@
 import { Subscribable, Unsubscriber } from './insertion';
 
-export function insertAttr(socket: Element, attrName: string, insertion: string | Subscribable<string>): Unsubscriber {
+export function insertAttr(socket: Element, attrName: string, insertion: string | Subscribable<string>): Unsubscriber | void {
     const attr = document.createAttribute(attrName);
     socket.setAttributeNode(attr);
     if(typeof insertion === 'string') {
@@ -8,9 +8,9 @@ export function insertAttr(socket: Element, attrName: string, insertion: string 
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         return () => {};
     } else {
-        const subscription = insertion.subscribe((value: string) => {
+        const unsubscriber = insertion((value: string) => {
             attr.value = value;
         });
-        return subscription.unsubscribe;
+        return unsubscriber;
     }
 }

@@ -1,7 +1,5 @@
-import { Observable, ReplaySubject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { horo } from '../../src/horo';
-import { mergeComponents } from '../../src/utils';
+import { mergeComponents, state } from '../../src/utils';
 import { Component } from '../../src/insertion/insertion';
 
 export function mount(root: Element): void {
@@ -18,19 +16,17 @@ export function mount(root: Element): void {
     root.appendChild(component.fragment);
 }
 
-function HelloWorldComponent(): Observable<Component> {
-    const component = new ReplaySubject<Component[]>();
-    component.next([
+function HelloWorldComponent() {
+    const [component] = state(mergeComponents([
         horo`
             <span> Hello </span>
         `,
         horo`
             <span> World </span>
         `
-    ]);
-    return component.pipe(
-        map(mergeComponents)
-    );
+    ]));
+
+    return component;
 }
 
 function FooBarStaticComponent(): Component[] {

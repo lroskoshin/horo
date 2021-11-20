@@ -1,14 +1,12 @@
 /**
  * @jest-environment jsdom-latest
  */
-import { ReplaySubject } from 'rxjs';
 import { horo } from '../src/horo';
+import { state } from '../src/utils';
  
 describe('Reactive Insert RxJS', () => {
-    const subject1 = new ReplaySubject<string>();
-    subject1.next('1');
-    const subject2 = new ReplaySubject<string>();
-    subject2.next('3');
+    const [subject1, setSubject1] = state('1');
+    const [subject2, setSubject2] = state('3');
     const element = document.createElement('div');
  
     beforeAll(() => {
@@ -29,8 +27,8 @@ describe('Reactive Insert RxJS', () => {
     });
  
     it('Update Text', () => {
-        subject1.next('2');
-        subject2.next('4');
+        setSubject1('2');
+        setSubject2('4');
         expect(element.firstElementChild).toHaveTextContent('2');
         expect(element.lastElementChild).toHaveTextContent('4');
     });
