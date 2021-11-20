@@ -1,8 +1,8 @@
-type Dispatcher<Value> = {
+export type Dispatcher<Value> = {
     (value: Value): void
 }
 
-type State<Value> = {
+export type State<Value> = {
     (cb: (value: Value) => void): void;
 }
 

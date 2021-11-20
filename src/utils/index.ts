@@ -1,2 +1,2 @@
 export { mergeComponents } from './merge-components';
-export { state } from './state';
+export { state, Dispatcher, State } from './state';
