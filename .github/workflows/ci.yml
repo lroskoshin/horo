@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Typecheck
-      run: npm run typechecl
+      run: npm run typecheck
     - name: Lint
       run: npm run lint
     - name: Test
