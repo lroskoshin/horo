@@ -9,15 +9,15 @@ Micro lib for DOM without virtual DOM.
 ## The Why
 Why not?
 ## Usage
-Horo doesn't have herself own state management. And we should use Horo with other libs for this.
-For example, Horo looks good with RxJS.
+Horo doesn't have herself own state management, but she has primitive helper `utils/state`, which is a simple event emitter.
+And You can use RxJS as before, but you should create you own wrapper for RxJS.
 ### Simple static insertion
 You can insert static value in you template.
 ```typescript
-const staticHelloWorld = 'hello world'; // horo accepts, for static insertion, only strings
+const text = 'hello world'; // horo accepts, for static insertion, only strings
 const component = horo`
     <div>
-        <span>${staticHelloWorld}</span>
+        <span>${text}</span>
     </div>
 `;
 ```
@@ -25,32 +25,30 @@ const component = horo`
 Also you can insert dynamic value and interact with this.
 ```typescript
 // horo accepts, for dynamic insertion, only Subscriable<string|Component>
-// RxJS Subscriable compatibility 
-const dynamicHelloWorld = new ReplaySubject<string>();
-dynamicHelloWorld.next('Hello '); // Initilize value
+const [foo, setFoo] = state('Hello');
 const component = horo`
     <div>
-        <span>${dynamicHelloWorld}</span>
+        <span>${foo}</span>
     </div>
 `;
-dynamicHelloWorld.next('Wolrd!'); // horo will change the value in the DOM on its own.
+setFoo('Wolrd!'); // horo will change the value in the DOM on its own.
 ```
 ### Attributes
 Similar to simple inserts, you can manipulate attributes. 
 ```typescript
-const visibilityClass = new ReplaySubject<string>();
-visibilityClass.next('show');
+const visibility = state('show');
 const component = horo`
-    <p class="${visibilityClass}">
+    <p class="${visibility}">
         Hello Wolrd! 
     </p>
 `;
-visibilityClass.next('hide');
+visibility.next('hide');
 ```
 ### Kinda sorta Components
 ```typescript
 import { Observable, ReplaySubject } from 'rxjs';
 import { horo, Component } from 'horo';
+import { state } from 'horo/utils';
 
 export function mount(root: Element): void {
     const component = horo`
@@ -61,9 +59,8 @@ export function mount(root: Element): void {
     root.appendChild(component.fragment);
 }
 
-function HelloWorldComponent(): Observable<Component> {
-    const component = new ReplaySubject<Component>();
-    component.next(horo`
+function HelloWorldComponent() {
+    const [component] = state(horo`
         <span> Hello World! </span>
     `);
     return component;
@@ -74,17 +71,11 @@ Or any other place you want.
 
 ### Event Handling
 ```typescript
-const input = new Subject<Event>();
-const text = input.pipe(
-    map((event: Event): string => {
-        return (event as InputEvent).data as string;
-    }),
-    startWith('hello')
-);
+const [text, setText] = state('');
+ 
 const component = horo`
-    <div>
-        <input @input=${input}></input>
-        <span>${text}</span>
-    </div>
-`;
+<div>
+    <input @input=${(ev: InputEvent) => setText(ev.data as string)} data-testid="input"></input>
+    <span>${text}</span>
+</div
 ```
