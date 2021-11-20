@@ -13,7 +13,7 @@ export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion)
     };
     const currentRange = document.createRange();
     
-    const subscription = insertion.subscribe((value: Component | string) => {
+    const unsubscribe = insertion((value: Component | string) => {
         currentRange.setStartBefore(address.start);
         currentRange.setEndAfter(address.end);
         if(typeof value === 'string') {
@@ -27,7 +27,7 @@ export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion)
 
     return () => {
         lastUnsubscriber();
-        subscription.unsubscribe();
+        unsubscribe?.();
     };
 }
 

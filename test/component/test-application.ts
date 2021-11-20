@@ -1,6 +1,5 @@
-import { Observable, ReplaySubject } from 'rxjs';
 import { horo } from '../../src/horo';
-import { Component } from '../../src/insertion/insertion';
+import { Component, Subscribable } from '../../src/insertion/insertion';
 
 export function mount(root: Element): void {
     const component = horo`
@@ -11,10 +10,12 @@ export function mount(root: Element): void {
     root.appendChild(component.fragment);
 }
 
-function HelloWorldComponent(): Observable<Component> {
-    const component = new ReplaySubject<Component>();
-    component.next(horo`
+function HelloWorldComponent(): Subscribable<Component> {
+    const component = horo`
         <span> Hello World! <span>
-    `);
-    return component;
+    `;
+
+    return (cb) => {
+        cb(component);
+    };
 }

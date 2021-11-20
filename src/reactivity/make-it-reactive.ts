@@ -1,4 +1,11 @@
-import { attrsPrefixLength, eventHandlingPrefixLength, insertionPrefixLength, isAttrsInstruction, isEventHandlingInstruction, isInsertionInsctruction } from '../instruction';
+import { 
+    attrsPrefixLength, 
+    eventHandlingPrefixLength, 
+    insertionPrefixLength, 
+    isAttrsInstruction, 
+    isEventHandlingInstruction, 
+    isInsertionInsctruction 
+} from '../instruction';
 import { insertValue } from '../insertion/insert-value';
 import { ensureSubscription, ensureValueInsertion, Instertion, Subscribable, Unsubscriber } from '../insertion/insertion';
 import { listenEvent } from '../listen-event';
@@ -26,7 +33,10 @@ export function makeItReactive(fragment: DocumentFragment, insertions: ArrayWith
         } else if (isAttrsInstruction(instruction)) {
             const [attrName, insertionIndex] = instruction.substring(attrsPrefixLength).split(':');
             const insertion = ensureValueInsertion(insertions[insertionIndex]);
-            unsubscribes.push(insertAttr(socket.nextElementSibling as Element, attrName, insertion as string | Subscribable<string>));
+            const unsubscribe = insertAttr(socket.nextElementSibling as Element, attrName, insertion as string | Subscribable<string>);
+            if(unsubscribe) {
+                unsubscribes.push(unsubscribe);
+            }
         }
     }
     return () => {

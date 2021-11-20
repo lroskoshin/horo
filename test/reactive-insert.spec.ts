@@ -1,29 +1,25 @@
 /**
  * @jest-environment jsdom-latest
  */
-import { ReplaySubject, Subscription } from 'rxjs';
 import { horo } from '../src/horo';
 import { Component } from '../src/insertion/insertion';
+import { state } from '../src/utils';
 
 describe('Reactive Insert RxJS', () => {
     let component: Component;
-    const subject = new ReplaySubject<string>();
+    const [subject, setSubject] = state('1');
 
-    let spy: jasmine.Spy;
-    const originalSubscribe = subject.subscribe.bind(subject);
-    const newSubscribe = (...args: never[]): Subscription => {
-        const subscription = originalSubscribe(...args);
-        spy = spyOn(subscription, 'unsubscribe');
-        return subscription; 
+    const stub = jest.fn();
+    const newSubscribe = (cb: (v: string) => void) => {
+        subject(cb);
+        return stub; 
     };
-    subject.subscribe = newSubscribe;
-    subject.next('1');
     const element = document.createElement('div');
 
     beforeAll(() => {
         component = horo`
         <div>
-            ${subject}
+            ${newSubscribe}
         </div>
         `;
         element.appendChild(component.fragment);
@@ -34,12 +30,12 @@ describe('Reactive Insert RxJS', () => {
     });
 
     it('Update Text', () => {
-        subject.next('2');
+        setSubject('2');
         expect(element).toHaveTextContent('2');
     });
 
     it('Unsubscribe', () => {
         component.unsubscribe();
-        expect(spy).toHaveBeenCalled();
+        expect(stub).toHaveBeenCalled();
     });
 });

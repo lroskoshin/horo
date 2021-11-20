@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // This benchmark is for performance comparing querySelector vs TreeWalker 
 // In the browser, the result may be different
 
