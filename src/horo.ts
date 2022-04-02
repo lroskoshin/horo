@@ -1,12 +1,9 @@
 import { Component, Instertion } from './insertion/insertion';
-import { ArrayWithStringIndex, makeItReactive } from './reactivity/make-it-reactive';
 import { parseTemplate } from './parser/parse-template';
+import { makeComponent } from './make-components';
 
-export function horo(template: TemplateStringsArray, ...insertions: Instertion[]): Component {
-    const fragment = parseTemplate(template, insertions);
-    const unsubscribe = makeItReactive(fragment, insertions as ArrayWithStringIndex<Instertion>);
-    return {
-        fragment,
-        unsubscribe,
-    };
+// To-Do: empty components
+export function horo(templateChunks: TemplateStringsArray, ...insertions: Instertion[]): Component {
+    const template = parseTemplate(templateChunks);
+    return makeComponent(template, insertions);
 }
