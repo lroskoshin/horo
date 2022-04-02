@@ -11,6 +11,7 @@ export function mount(root: Element): void {
             <div data-testid="foo-bar">
                 ${mergeComponents(FooBarStaticComponent())}
             </div>
+            <div data-testid="empty-list">${EmptyList()}</div>
         </div>
     `;
     root.appendChild(component.fragment);
@@ -27,6 +28,10 @@ function HelloWorldComponent() {
     ]));
 
     return component;
+}
+
+function EmptyList() {
+    return mergeComponents([]);
 }
 
 function FooBarStaticComponent(): Component[] {

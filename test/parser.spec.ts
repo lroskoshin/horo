@@ -1,4 +1,4 @@
-import { joiner } from '../src/parser/joiner';
+import { parseTemplate } from '../src/parser/parse-template';
 
 describe('Join template', () => {
     const template = getTemplateChunks`
@@ -7,7 +7,7 @@ describe('Join template', () => {
             <p>${undefined}</p>
         </div>
     `;
-    const joinedTemplate = joiner(template);
+    const joinedTemplate = parseTemplate(template);
     it('Should be string', () => {
         expect(typeof joinedTemplate).toEqual('string');
     });

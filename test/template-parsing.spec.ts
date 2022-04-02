@@ -2,7 +2,6 @@
  * @jest-environment jsdom-latest
  */
 import { findByTestId } from '@testing-library/dom';
-import { Instertions } from '../src/index';
 import { parseTemplate } from '../src/parser/parse-template';
 describe('Template Parsing', () => {
     it('Simple static parser', async ()=> {
@@ -17,9 +16,9 @@ describe('Template Parsing', () => {
 });
 
 
-function mount(template: TemplateStringsArray, ...insertions: Instertions[]): HTMLElement {
-    const parsed = parseTemplate(template, insertions);
+function mount(template: TemplateStringsArray): HTMLElement {
+    const parsed = parseTemplate(template);
     const element = document.createElement('div');
-    element.appendChild(parsed);
+    element.innerHTML = parsed;
     return element;
 } 
