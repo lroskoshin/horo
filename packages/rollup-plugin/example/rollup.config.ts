@@ -1,6 +1,6 @@
 import ts from 'rollup-plugin-ts';
 import { RollupOptions } from 'rollup';
-import { parser } from './parser';
+import { parser } from '../src/parser';
 const config: RollupOptions = {
     input: [
         './example.tsx',

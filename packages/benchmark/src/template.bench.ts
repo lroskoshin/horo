@@ -101,7 +101,7 @@ function treeWalker(rootElem: HTMLElement) {
 function querySelector(rootElem: HTMLElement): void {
     const items = rootElem.querySelectorAll('[data-id]');
     let node;
-    const iterator = items.entries();
+    const iterator = (items as any).entries();
     while ((node = iterator.next().value)) {
         node;
     }

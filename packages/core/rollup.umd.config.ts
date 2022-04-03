@@ -1,4 +1,4 @@
-import ts from 'rollup-plugin-ts';
+import typescript from '@rollup/plugin-typescript';
 import { RollupOptions } from 'rollup';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
@@ -10,7 +10,7 @@ const config: RollupOptions = {
         { file: pkg.main, name: 'horo', format: 'umd', sourcemap: true },
     ],
     plugins: [
-        ts(),
+        typescript(),
         terser()
     ]
 };

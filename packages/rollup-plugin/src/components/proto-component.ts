@@ -1,6 +1,6 @@
 import traverse, { NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
-import { attrsPrefix, insertionPrefix } from '../../src/instruction';
+import { attrsPrefix, insertionPrefix } from '@horo/core/src/instruction';
 
 export type Opening = NodePath<t.JSXOpeningElement> | NodePath<t.JSXOpeningFragment>;
 export type Closing = NodePath<t.JSXClosingElement> | NodePath<t.JSXClosingFragment>;

@@ -3,12 +3,12 @@
 set -e
 
 echo ">> Cleaning up..."
-rm -rf dist
+rm -rf packages/core/dist
 
 echo ">> Building a package..."
-npm run build
+npm run build --workspace=core
 
 echo ">> Cleaning up a package.json file..."
-npm run clean-package-json
+npm run clean-package-json --workspace=core
 
 echo "Package is ready to publish"

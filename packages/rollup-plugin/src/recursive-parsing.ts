@@ -9,10 +9,6 @@ import { NodePath } from '@babel/traverse';
 export function recursiveParsing(ast: ParseResult<File>) {
     const roots: NodePath<t.JSX>[] = [];
     traverse(ast, {
-        // Проходить не по открытым а по целым фрагментам и элементам, которые не являются потомками других фрагментов и элементов. 
-        // Потом в каждом таком элемент делать traverse что бы собрать компонент.
-        // Вмето них возвращать компоненты.
-        // Заменять их в обратном порядке.
         JSX(path) {
             if(!path.parentPath.isJSX()) {
                 roots.push(path);

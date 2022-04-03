@@ -1,0 +1,26 @@
+{
+  "name": "@horo/benchmark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/benchmark": "^2.1.1"
+  },
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "ts-node": "^10.7.0"
+  },
+  "scripts": {
+    "start": "ts-node ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lroskoshin/horo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lroskoshin/horo/issues"
+  },
+  "homepage": "https://github.com/lroskoshin/horo#readme"
+}
