@@ -24,7 +24,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - run: npm install -g npm@latest
     - name: Install dependencies
-      run: npm install
+      run: npm install --workspaces && npm install
     - name: Typecheck
       run: npm run typecheck
     - name: Lint
