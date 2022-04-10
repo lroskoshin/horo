@@ -19,6 +19,6 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - run: npm install
     - run: bash ./pre-publish.sh
-    - run: npm publish
+    - run: npm publish --workspace=@horo/core --workspace=@horo/state
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
