@@ -1,12 +1,14 @@
 /**
  * @jest-environment jsdom-latest
  */
-import { horo } from '../src/horo';
-import { state } from '../src/utils';
+
+import { horo } from "@horo/core";
+import { useState } from "@horo/state";
+
  
 describe('Reactive Insert RxJS', () => {
-    const [subject1, setSubject1] = state('1');
-    const [subject2, setSubject2] = state('3');
+    const [subject1, setSubject1] = useState('1');
+    const [subject2, setSubject2] = useState('3');
     const element = document.createElement('div');
  
     beforeAll(() => {

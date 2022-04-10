@@ -7,7 +7,7 @@ import {
     isInsertionInsctruction 
 } from '../instruction';
 import { insertValue } from '../insertion/insert-value';
-import { ensureSubscription, ensureValueInsertion, Instertion, Subscribable, Unsubscriber } from '../insertion/insertion';
+import { ensureSubscription, ensureValueInsertion, Insertion, Subscribable, Unsubscriber } from '../insertion/insertion';
 import { listenEvent } from '../listen-event';
 import { getSocketsForReactivity } from './get-sockets-for-reactivity';
 import { insertAttr } from '../insertion/insert-attr';
@@ -16,7 +16,7 @@ export type ArrayWithStringIndex<T> = T[] & {
     [index: string]: T;
 }
 
-export function makeItReactive(fragment: DocumentFragment, insertions: ArrayWithStringIndex<Instertion>): Unsubscriber {
+export function makeItReactive(fragment: DocumentFragment, insertions: ArrayWithStringIndex<Insertion>): Unsubscriber {
     const sockets = getSocketsForReactivity(fragment);
     const unsubscribes: Unsubscriber[] = [];
     for (let i = 0; i < sockets.length; i++) {

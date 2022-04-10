@@ -4,9 +4,7 @@ import { Plugin } from 'rollup';
 import { recursiveParsing } from './recursive-parsing';
 import { addHoroImport } from './add-horo-import';
 
-
-export function parser(): Plugin {
-    
+export function horoPlugin(): Plugin {
     return  {
         name: 'horo-parser',
         transform(code, id) {

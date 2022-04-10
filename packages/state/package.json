@@ -1,0 +1,50 @@
+{
+  "name": "@horo/state",
+  "version": "1.0.0",
+  "description": "",
+  "sideEffects": false,
+  "main": "dist/index.umd.js",
+  "module": "./dist/module.js",
+  "modules.root": "./dist",
+  "typings": "dist/types/module.d.ts",
+  "exports": {
+    ".": {
+      "node": "./dist/index.umd.js",
+      "default": "./dist/module.js",
+      "import": "./dist/module.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run build:es && npm run build:umd",
+    "build:es": "rollup -c rollup.config.js",
+    "build:umd": "rollup -c rollup.umd.config.js",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^8.12.0",
+    "rollup": "^2.70.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lroskoshin/horo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lroskoshin/horo/issues"
+  },
+  "homepage": "https://github.com/lroskoshin/horo#readme",
+  "dependencies": {
+    "@horo/core": "^1.0.5"
+  }
+}

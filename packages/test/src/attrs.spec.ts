@@ -1,14 +1,14 @@
 /**
  * @jest-environment jsdom-latest
  */
+import { Component, horo } from '@horo/core';
+import { useState } from '@horo/state';
 import { getByTestId } from '@testing-library/dom';
-import { horo } from '../src/horo';
-import { Component } from '../src/insertion/insertion';
-import { state } from '../src/utils';
+
 
 describe('Reactive Insert RxJS', () => {
     let component: Component;
-    const [classes, setClasses] = state('foo');
+    const [classes, setClasses] = useState('foo');
 
     const stub: jest.Mock<void, []> = jest.fn();
     const newSubscribe = (cb: (v: string) => void) => {

@@ -3,11 +3,11 @@ import traverse from '@babel/traverse';
 import { File } from '@babel/types';
 import { Component } from './components/component';
 import { ProtoComponent } from './components/proto-component';
-import * as t from '@babel/types';
+import { JSX } from '@babel/types';
 import { NodePath } from '@babel/traverse';
 
 export function recursiveParsing(ast: ParseResult<File>) {
-    const roots: NodePath<t.JSX>[] = [];
+    const roots: NodePath<JSX>[] = [];
     traverse(ast, {
         JSX(path) {
             if(!path.parentPath.isJSX()) {

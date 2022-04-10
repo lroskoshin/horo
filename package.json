@@ -32,6 +32,10 @@
   "workspaces": [
     "packages\\rollup-plugin",
     "packages\\core",
-    "packages\\benchmark"
+    "packages\\benchmark",
+    "packages\\example",
+    "packages\\types",
+    "packages\\test",
+    "packages\\state"
   ]
 }

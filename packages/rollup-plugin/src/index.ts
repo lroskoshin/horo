@@ -1,0 +1,1 @@
+export { horoPlugin } from './parser';

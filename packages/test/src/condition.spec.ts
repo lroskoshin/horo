@@ -1,15 +1,16 @@
 /**
  * @jest-environment jsdom-latest
  */
- import { horo } from '../src/horo';
  import {
      getByTestId,
      fireEvent,
  } from '@testing-library/dom';
-import { state } from '../src/utils';
+
+import { useState } from '@horo/state'
+import { horo } from '@horo/core'
   
  describe('Event Handling RxJS', () => {
-    const [checked, setChecked] = state('False');
+    const [checked, setChecked] = useState('False');
     let current: string;
     checked((v) => current = v);
     const element = document.createElement('div');

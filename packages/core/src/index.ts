@@ -1,2 +1,4 @@
 export { horo } from './horo';
-export { Component, StaticInsertion, Instertion as Instertions, DynamicInsertion } from './insertion/insertion';
+export { makeComponent } from './make-component';
+export { Component, StaticInsertion, Insertion, DynamicInsertion, Unsubscriber, Subscribable } from './insertion/insertion';
+export { attrsPrefix, insertionPrefix } from './instruction';

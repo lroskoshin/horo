@@ -1,8 +1,8 @@
+import { horo } from "@horo/core";
+
 /**
  * @jest-environment jsdom-latest
  */
-import { horo } from '../src/horo';
-
 describe('Static insertion', () => {
     it('Text insertion', () => {
         const staticText = 'hello world';

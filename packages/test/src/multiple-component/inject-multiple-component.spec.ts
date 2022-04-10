@@ -1,9 +1,8 @@
 /**
  * @jest-environment jsdom
  */
- import { getByTestId } from '@testing-library/dom';
-import { horo } from '../../src/horo';
-import { mergeComponents } from '../../src/utils/merge-components';
+import { horo, mergeComponents } from '@horo/core';
+import { getByTestId } from '@testing-library/dom';
 import { mount } from './test-multiple-components';
 
  describe('Inject component', () => {

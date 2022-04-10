@@ -1,13 +1,13 @@
 /**
  * @jest-environment jsdom-latest
  */
-import { horo } from '../src/horo';
-import { Component } from '../src/insertion/insertion';
-import { state } from '../src/utils';
+
+import { Component, horo } from "@horo/core";
+import { useState } from "@horo/state";
 
 describe('Reactive Insert RxJS', () => {
     let component: Component;
-    const [subject, setSubject] = state('1');
+    const [subject, setSubject] = useState('1');
 
     const stub = jest.fn();
     const newSubscribe = (cb: (v: string) => void) => {

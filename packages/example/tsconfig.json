@@ -1,16 +1,15 @@
 {
     "compilerOptions": {
-        "declaration": true,
         "baseUrl": "./",
         "rootDir": "./src",
-        "target": "ESNext",
-        "moduleResolution": "Node",
         "outDir": "./dist",
-        "declarationDir": "types"
+        "declaration": false,
+        "jsx": "preserve",
     },
     "extends": "../../tsconfig.base.json",
     "include": [
-        "./src/**/*"
+        "./src/**/*",
+        "./types/**/*"
     ],
     "exclude": ["node_modules"] 
 }

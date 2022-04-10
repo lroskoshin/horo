@@ -1,5 +1,4 @@
-import { horo } from '../../src/horo';
-import { Component, Subscribable } from '../../src/insertion/insertion';
+import { Component, horo, Subscribable } from "@horo/core";
 
 export function mount(root: Element): void {
     const component = horo`

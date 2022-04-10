@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom-latest
  */
- import { horo } from '../src/horo';
+import { horo } from "@horo/core";
  
  describe('Render', () => {
      it('Simple Render Hello World', () => {

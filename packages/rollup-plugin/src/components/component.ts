@@ -1,19 +1,19 @@
 import { ProtoComponent } from './proto-component';
-import * as t from '@babel/types';
+import { StringLiteral, ArrayExpression, JSXFragment, JSXElement, stringLiteral, arrayExpression, callExpression, identifier } from '@babel/types';
 import { NodePath } from '@babel/traverse';
 
 export class Component {
-    private template: t.StringLiteral;
-    private insertion: t.ArrayExpression;
-    public root: NodePath<t.JSXFragment | t.JSXElement>;
+    private template: StringLiteral;
+    private insertion: ArrayExpression;
+    public root: NodePath<JSXFragment | JSXElement>;
 
     constructor(proto: ProtoComponent) {
-        this.root = proto.getRoot() as NodePath<t.JSXFragment | t.JSXElement>;
-        this.template = t.stringLiteral(proto.template.join(''));
-        this.insertion = t.arrayExpression(proto.insertions);
+        this.root = proto.getRoot() as NodePath<JSXFragment | JSXElement>;
+        this.template = stringLiteral(proto.template.join(''));
+        this.insertion = arrayExpression(proto.insertions);
     }
 
     public getComponent() {
-        return t.callExpression(t.identifier('horo'), [this.template, this.insertion]);
+        return callExpression(identifier('makeComponent'), [this.template, this.insertion]);
     }
 }

@@ -1,8 +1,14 @@
 {
+  "compilerOptions": {
+    "outDir": "dist/lib",
+    "declarationDir": "./dist/types",
+    "baseUrl": "./",
+    "declaration": true,
+    "rootDir": "./src"
+  },
   "extends": "../../tsconfig.base.json",
   "include": [
     "./src/**/*",
-    "./jest-setup.ts"
   ],
   "exclude": ["node_modules", "**/*.spec.ts"] 
 }

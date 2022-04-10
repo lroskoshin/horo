@@ -1,6 +1,5 @@
-import { horo } from '../../src/horo';
-import { mergeComponents, state } from '../../src/utils';
-import { Component } from '../../src/insertion/insertion';
+import { Component, horo, mergeComponents } from "@horo/core";
+import { useState } from "@horo/state";
 
 export function mount(root: Element): void {
     const component = horo`
@@ -18,7 +17,7 @@ export function mount(root: Element): void {
 }
 
 function HelloWorldComponent() {
-    const [component] = state(mergeComponents([
+    const [component] = useState(mergeComponents([
         horo`
             <span> Hello </span>
         `,
