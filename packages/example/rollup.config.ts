@@ -1,7 +1,7 @@
 import { RollupOptions } from 'rollup';
 import pkg from './package.json';
 import typescript from '@rollup/plugin-typescript';
-import { horoPlugin } from '@horo/rollup-plugin';
+import { horoPlugin } from '@horojs/rollup-plugin';
 import nodeResolve from '@rollup/plugin-node-resolve';
 
 const config: RollupOptions = {

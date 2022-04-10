@@ -1,6 +1,6 @@
-import { Component } from "@horo/core";
-import { useState, State } from "@horo/state"
-import '@horo/types'
+import { Component } from "@horojs/core";
+import { useState, State } from "@horojs/state"
+import '@horojs/types'
 
 function HelloWorld({foo}: {foo: State<string>}): Component {
     return <>

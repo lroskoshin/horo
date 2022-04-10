@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { horo, mergeComponents } from '@horo/core';
+import { horo, mergeComponents } from '@horojs/core';
 import { getByTestId } from '@testing-library/dom';
 import { mount } from './test-multiple-components';
 

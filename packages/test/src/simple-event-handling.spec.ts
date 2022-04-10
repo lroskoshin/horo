@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom-latest
  */
-import { horo } from '@horo/core';
+import { horo } from '@horojs/core';
 import {
     getByTestId,
     fireEvent,

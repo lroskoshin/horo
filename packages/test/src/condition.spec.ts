@@ -6,8 +6,8 @@
      fireEvent,
  } from '@testing-library/dom';
 
-import { useState } from '@horo/state'
-import { horo } from '@horo/core'
+import { useState } from '@horojs/state'
+import { horo } from '@horojs/core'
   
  describe('Event Handling RxJS', () => {
     const [checked, setChecked] = useState('False');

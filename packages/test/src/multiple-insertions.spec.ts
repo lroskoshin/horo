@@ -2,8 +2,8 @@
  * @jest-environment jsdom-latest
  */
 
-import { horo } from "@horo/core";
-import { useState } from "@horo/state";
+import { horo } from "@horojs/core";
+import { useState } from "@horojs/state";
 
  
 describe('Reactive Insert RxJS', () => {

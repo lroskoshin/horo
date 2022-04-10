@@ -1,4 +1,4 @@
-import type { Component, Insertion } from '@horo/core'
+import type { Component, Insertion } from '@horojs/core'
 import './attributes';
 declare global {
     namespace JSX {

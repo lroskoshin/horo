@@ -1,5 +1,5 @@
 {
-  "name": "@horo/benchmark",
+  "name": "@horojs/benchmark",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

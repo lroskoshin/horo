@@ -1,15 +1,15 @@
 {
-  "name": "@horo/example",
+  "name": "@horojs/example",
   "version": "1.0.0",
   "description": "",
   "main": "rollup.config.js",
   "dependencies": {
-    "@horo/core": "^1.0.5",
-    "@horo/rollup-plugin": "^1.0.0",
-    "@horo/state": "^1.0.0"
+    "@horojs/core": "^1.0.5",
+    "@horojs/rollup-plugin": "^1.0.0",
+    "@horojs/state": "^1.0.0"
   },
   "devDependencies": {
-    "@horo/types": "^1.0.0",
+    "@horojs/types": "^1.0.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-typescript": "^8.3.1",
     "rollup": "^2.70.1",
