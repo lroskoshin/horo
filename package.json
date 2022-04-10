@@ -31,12 +31,12 @@
     "lage": "^0.31.2"
   },
   "workspaces": [
-    "packages\\rollup-plugin",
     "packages\\core",
+    "packages\\state",
+    "packages\\types",
+    "packages\\rollup-plugin",
     "packages\\benchmark",
     "packages\\example",
-    "packages\\types",
-    "packages\\test",
-    "packages\\state"
+    "packages\\test"
   ]
 }
