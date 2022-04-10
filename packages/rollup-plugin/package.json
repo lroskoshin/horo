@@ -1,5 +1,5 @@
 {
-  "name": "@horo/rollup-plugin",
+  "name": "@horojs/rollup-plugin",
   "version": "1.0.0",
   "description": "",
   "typings": "dist/types/index.d.ts",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/lroskoshin/horo#readme",
   "dependencies": {
-    "@horo/core": "^1.0.5",
+    "@horojs/core": "^1.0.5",
     "@babel/generator": "^7.17.7",
     "@babel/parser": "^7.17.8",
     "@babel/template": "^7.16.7",

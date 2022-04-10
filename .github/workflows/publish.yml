@@ -8,9 +8,9 @@ on:
         required: true
         type: choice
         options:
-          - "@horo/rollup-plugin"
-          - "@horo/core"
-          - "@horo/state"
+          - "@horojs/rollup-plugin"
+          - "@horojs/core"
+          - "@horojs/state"
       version:
         required: true
         description: "Version"

@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom-latest
  */
-import { Component, horo } from '@horo/core';
-import { useState } from '@horo/state';
+import { Component, horo } from '@horojs/core';
+import { useState } from '@horojs/state';
 import { getByTestId } from '@testing-library/dom';
 
 

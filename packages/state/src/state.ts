@@ -1,4 +1,4 @@
-import { Unsubscriber } from '@horo/core';
+import { Unsubscriber } from '@horojs/core';
 
 export type Dispatcher<Value> = {
     (value: Value): void

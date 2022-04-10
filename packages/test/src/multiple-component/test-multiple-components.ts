@@ -1,5 +1,5 @@
-import { Component, horo, mergeComponents } from "@horo/core";
-import { useState } from "@horo/state";
+import { Component, horo, mergeComponents } from "@horojs/core";
+import { useState } from "@horojs/state";
 
 export function mount(root: Element): void {
     const component = horo`

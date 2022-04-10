@@ -1,4 +1,4 @@
-import { Component, horo, Subscribable } from "@horo/core";
+import { Component, horo, Subscribable } from "@horojs/core";
 
 export function mount(root: Element): void {
     const component = horo`
