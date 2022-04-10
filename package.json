@@ -11,39 +11,15 @@
     "templates",
     "reactive"
   ],
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "main": "dist/index.umd.js",
-  "module": "dist/module.js",
-  "modules.root": "dist",
-  "typings": "dist/types/module.d.ts",
   "scripts": {
-    "benchmark": "ts-node ./benchmarks/index.ts",
-    "test": "jest",
-    "build": "npm run build:es && npm run build:umd",
-    "build:es": "rollup -c rollup.config.js",
-    "build:umd": "rollup -c rollup.umd.config.js",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "clean-package-json": "ts-node-script utils/clean-package-json.ts"
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lroskoshin/horo.git"
-  },
-  "exports": {
-    ".": {
-      "node": "./dist/index.umd.js",
-      "default": "./dist/index.js",
-      "import": "./dist/index.js"
-    },
-    "./utils": {
-      "node": "./dist/index.umd.js",
-      "default": "./dist/utils/index.js",
-      "import": "./dist/utils/index.js"
-    }
   },
   "author": "lroskoshin",
   "license": "ISC",
@@ -52,25 +28,15 @@
   },
   "homepage": "https://github.com/lroskoshin/horo#readme",
   "devDependencies": {
-    "@testing-library/dom": "^8.11.1",
-    "@testing-library/jest-dom": "^5.15.0",
-    "@types/benchmark": "^2.1.1",
-    "@types/jest": "^27.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "benchmark": "^2.1.4",
-    "eslint": "^8.2.0",
-    "eslint-plugin-jest": "^25.2.4",
-    "global-jsdom": "^8.3.0",
-    "jest": "^27.3.1",
-    "jest-environment-jsdom-latest": "^26.6.2",
-    "jsdom": "^18.1.0",
-    "rollup": "^2.60.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-ts": "^2.0.4",
-    "rxjs": "^7.4.0",
-    "ts-jest": "^27.0.7",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.2"
-  }
+    "lage": "^0.31.2"
+  },
+  "workspaces": [
+    "packages\\core",
+    "packages\\state",
+    "packages\\types",
+    "packages\\rollup-plugin",
+    "packages\\benchmark",
+    "packages\\example",
+    "packages\\test"
+  ]
 }

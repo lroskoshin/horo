@@ -20,9 +20,13 @@ jobs:
     - name: Set up Node.js 14
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 16
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm install -g npm@latest
     - name: Install dependencies
-      run: npm install
+      run: npm install --workspaces && npm install
+    - name: Build
+      run: npm run build
     - name: Typecheck
       run: npm run typecheck
     - name: Lint

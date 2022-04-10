@@ -25,7 +25,7 @@ const component = horo`
 Also you can insert dynamic value and interact with this.
 ```typescript
 // horo accepts, for dynamic insertion, only Subscriable<string|Component>
-const [foo, setFoo] = state('Hello');
+const [foo, setFoo] = useState('Hello');
 const component = horo`
     <div>
         <span>${foo}</span>
@@ -36,7 +36,7 @@ setFoo('Wolrd!'); // horo will change the value in the DOM on its own.
 ### Attributes
 Similar to simple inserts, you can manipulate attributes. 
 ```typescript
-const visibility = state('show');
+const visibility = useState('show');
 const component = horo`
     <p class="${visibility}">
         Hello Wolrd! 
@@ -60,7 +60,7 @@ export function mount(root: Element): void {
 }
 
 function HelloWorldComponent() {
-    const [component] = state(horo`
+    const [component] = useState(horo`
         <span> Hello World! </span>
     `);
     return component;
@@ -71,7 +71,7 @@ Or any other place you want.
 
 ### Event Handling
 ```typescript
-const [text, setText] = state('');
+const [text, setText] = useState('');
  
 const component = horo`
 <div>
