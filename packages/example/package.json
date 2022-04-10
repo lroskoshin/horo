@@ -5,7 +5,8 @@
   "main": "rollup.config.js",
   "dependencies": {
     "@horo/core": "^1.0.5",
-    "@horo/rollup-plugin": "^1.0.0"
+    "@horo/rollup-plugin": "^1.0.0",
+    "@horo/state": "^1.0.0"
   },
   "devDependencies": {
     "@horo/types": "^1.0.0",
