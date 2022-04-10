@@ -1,10 +1,29 @@
 name: Publish new version
 
 on:
-  push:
-    tags:
-      - v*
   workflow_dispatch:
+    inputs:
+      package:
+        description: "Package"
+        required: true
+        type: choice
+        options:
+          - "@horo/rollup-plugin"
+          - "@horo/core"
+          - "@horo/state"
+      version:
+        required: true
+        description: "Version"
+        type: choice
+        options:
+          - "major"
+          - "minor"
+          - "patch"
+          - "premajor"
+          - "preminor"
+          - "prepatch"
+          - "prerelease"
+          - "from-git"
 
 jobs:
   publish:
@@ -18,7 +37,10 @@ jobs:
         node-version: 14
         registry-url: 'https://registry.npmjs.org'
     - run: npm install
-    - run: bash ./pre-publish.sh
-    - run: npm publish --workspace=@horo/core --workspace=@horo/state
+    - run: rm -rf packages/core/dist
+    - run: npm run build --workspace=${{github.event.inputs.package}}
+    - run: npm pkg delete scripts --workspace=${{github.event.inputs.package}}
+    - run: npm version ${{github.event.inputs.version}} --workspace=${{github.event.inputs.package}}
+    - run: npm publish --workspace=${{github.event.inputs.package}}
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

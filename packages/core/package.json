@@ -30,8 +30,7 @@
     "build:es": "rollup -c rollup.config.js",
     "build:umd": "rollup -c rollup.umd.config.js",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "clean-package-json": "ts-node-script utils/clean-package-json.ts"
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
