@@ -39,7 +39,7 @@ jobs:
     - run: npm install -g npm@latest
     - run: npm install
     - run: rm -rf packages/core/dist
-    - run: npm run build --workspace=${{github.event.inputs.package}}
+    - run: npm run build
     - run: npm pkg delete scripts --workspace=${{github.event.inputs.package}}
     - run: npm version ${{github.event.inputs.version}} --workspace=${{github.event.inputs.package}}
     - run: npm publish --workspace=${{github.event.inputs.package}}
