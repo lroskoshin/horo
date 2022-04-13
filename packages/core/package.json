@@ -1,6 +1,6 @@
 {
   "name": "@horojs/core",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A micro library for a reactive UI application.",
   "keywords": [
     "frontend",
@@ -58,8 +58,12 @@
   },
   "typesVersions": {
     "*": {
-      ".": ["./dist/types/module.d.ts"],
-      "./utils": ["./dist/types/utils.index.d.ts"]
+      ".": [
+        "./dist/types/module.d.ts"
+      ],
+      "./utils": [
+        "./dist/types/utils.index.d.ts"
+      ]
     }
   },
   "homepage": "https://github.com/lroskoshin/horo#readme"
