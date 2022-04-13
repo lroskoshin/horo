@@ -41,6 +41,9 @@
   "bugs": {
     "url": "https://github.com/lroskoshin/horo/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": false,
   "main": "dist/index.umd.js",
   "module": "./dist/module.js",

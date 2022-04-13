@@ -6,6 +6,9 @@
   "main": "dist/index.umd.js",
   "module": "./dist/module.js",
   "modules.root": "./dist",
+  "publishConfig": {
+    "access": "public"
+  },
   "typings": "dist/types/module.d.ts",
   "exports": {
     ".": {
