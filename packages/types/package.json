@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/lroskoshin/horo/issues"
   },
+  "peerDependencies": {
+    "@horojs/core": "1.0.7"
+  },
   "homepage": "https://github.com/lroskoshin/horo#readme"
 }
