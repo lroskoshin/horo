@@ -1,6 +1,6 @@
 {
   "name": "@horojs/core",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A micro library for a reactive UI application.",
   "keywords": [
     "frontend",
