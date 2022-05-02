@@ -4,6 +4,9 @@
   "description": "",
   "main": "",
   "typings": "index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": ["index.d.ts"],
   "devDependencies": {},
   "repository": {
