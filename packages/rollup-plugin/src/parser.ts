@@ -1,6 +1,6 @@
 import { parse } from '@babel/parser';
 import generate from '@babel/generator';
-import { Plugin } from 'rollup';
+import type { Plugin } from 'rollup';
 import { recursiveParsing } from './recursive-parsing';
 import { addHoroImport } from './add-horo-import';
 
