@@ -1,13 +1,13 @@
 {
   "name": "@horojs/types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "",
-  "typings": "index.d.ts",
+  "typings": "jsx-runtime.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "files": ["index.d.ts"],
+  "files": ["jsx-runtime.d.ts"],
   "devDependencies": {},
   "repository": {
     "type": "git",

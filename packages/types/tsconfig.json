@@ -1,11 +1,9 @@
 {
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "typeRoots": ["./types"],
+        "typeRoots": ["./"],
         "baseUrl": "./"
     },
-    "include": [
-        "./types/**/*", "index.d.ts",
-    ],
+    "include": ["jsx-runtime.d.ts"],
     "exclude": ["node_modules"] 
 }
