@@ -16,6 +16,13 @@ export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion)
     const unsubscribe = insertion((value: Component | string) => {
         currentRange.setStartBefore(address.start);
         currentRange.setEndAfter(address.end);
+        const parent = address.start.parentNode;
+        if (parent?.firstChild === address.start && parent?.lastChild === address.end) {
+            parent.textContent = '';
+            currentRange.selectNodeContents(parent);
+        } else {
+            currentRange.deleteContents();
+        }
         if(typeof value === 'string') {
             address = injectDynamicText(currentRange, value);
         } else {
@@ -33,7 +40,6 @@ export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion)
 
 function injectDynamicText(range: Range, value: string): InsertionAddress {
     const textNode = document.createTextNode(value);
-    range.deleteContents();
     range.insertNode(textNode);
     range.selectNode(textNode);
     return {
@@ -43,7 +49,6 @@ function injectDynamicText(range: Range, value: string): InsertionAddress {
 }
 
 function injectDynamicComponent(range: Range, value: Component): InsertionAddress {
-    range.deleteContents();
     const address: InsertionAddress = {
         start: value.fragment.firstChild as Node,
         end: value.fragment.lastChild as Node,

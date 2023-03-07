@@ -1,4 +1,4 @@
-import { parseTemplate } from '../src/parser/parse-template';
+import { parseTemplate } from './parse-template';
 
 describe('Join template', () => {
     const template = getTemplateChunks`

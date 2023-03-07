@@ -1,11 +1,11 @@
 import { Component } from "@horojs/core";
 import { useState, State } from "@horojs/state"
-import '@horojs/types'
+import type * as d from "@horojs/types";
 
 function HelloWorld({foo}: {foo: State<string>}): Component {
     return <>
         <h2>{foo}</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quidem earum necessitatibus quis, quo commodi voluptas numquam mollitia esse, ea repudiandae ducimus, quae dolore id tenetur accusantium nisi vero atque.</p>
+        <p>Hello</p>
     </>;
 }
 

@@ -21,9 +21,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run build:es && npm run build:umd",
-    "build:es": "rollup -c rollup.config.js",
-    "build:umd": "rollup -c rollup.umd.config.js",
+    "test": "jest",
+    "build": "npm run build-es && npm run build-umd",
+    "build-es": "rollup -c rollup.config.js",
+    "build-umd": "rollup -c rollup.umd.config.js",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
