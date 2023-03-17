@@ -10,11 +10,9 @@ import { useState } from '@horojs/state'
 import { horo } from '@horojs/core'
   
  describe('Event Handling RxJS', () => {
-    const [checked, setChecked] = useState('False');
-    let current: string;
-    checked((v) => current = v);
-    const element = document.createElement('div');
-    const check = () => setChecked(current === 'False' ? 'True' : 'False');
+     const element = document.createElement('div');
+    const [checked, setChecked, current] = useState('False');
+    const check = () => setChecked(current() === 'False' ? 'True' : 'False');
   
     beforeAll(() => {
         const component = horo`

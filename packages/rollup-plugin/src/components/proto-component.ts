@@ -1,6 +1,6 @@
 import traverse, { NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
-import { attrsPrefix, insertionPrefix } from '@horojs/core';
+import { attrsPrefix, insertionPrefix, eventHandlingPrefix } from '@horojs/core';
 
 export type Opening = NodePath<t.JSXOpeningElement> | NodePath<t.JSXOpeningFragment>;
 export type Closing = NodePath<t.JSXClosingElement> | NodePath<t.JSXClosingFragment>;
@@ -121,7 +121,7 @@ class Attributes {
         });
 
         const comments = protoComments.map((protoComment) => {
-            return protoComment.type === 'attr' ? `<!--${attrsPrefix}${protoComment.name}:${protoComment.index}-->` : `<!--@${protoComment.name.slice(2).toLowerCase()}:${protoComment.index}-->`;
+            return protoComment.type === 'attr' ? `<!--${attrsPrefix}${protoComment.name}:${protoComment.index}-->` : `<!--${eventHandlingPrefix}${protoComment.name.slice(2).toLowerCase()}:${protoComment.index}-->`;
         });
 
         return comments.join('');

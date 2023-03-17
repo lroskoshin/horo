@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component } from '../insertion/insertion';
 // To-Do: Merge emplty list
 export function mergeComponents(components: Component[]): Component {
@@ -11,6 +12,12 @@ export function mergeComponents(components: Component[]): Component {
 
     return {
         fragment: root,
-        unsubscribe: () => components.forEach((component: Component) => component.unsubscribe())
+        unsubscribe: () => components.forEach((component: Component) => component.unsubscribe()),
+        address: () => {
+            return {
+                start: root.firstChild!,
+                end: root.lastChild!,
+            };
+        }
     };
 }

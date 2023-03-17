@@ -1015,17 +1015,7 @@ interface VideoHTMLAttributes extends MediaHTMLAttributes {
     disableRemotePlayback?: `${boolean}` | undefined;
 }
 
-// this list is "complete" in that it contains every SVG attribute
-// that React supports, but the types can be improved.
-// Full list here: https://facebook.github.io/react/docs/dom-elements.html
-//
-// The three broad type categories are (in order of restrictiveness):
-//   - "`${number}` | string"
-//   - "string"
-//   - union of string literals
 interface SVGAttributes extends AriaAttributes, DOMAttributes {
-    // Attributes which also defined in HTMLAttributes
-    // See comment in SVGDOMPropertyConfig.js
     class?: string | undefined;
     color?: string | undefined;
     height?: `${number}` | string | undefined;

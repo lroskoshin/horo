@@ -1,4 +1,4 @@
-export function getSocketsForReactivity(fragment: DocumentFragment): Comment[] {
+export function getSocketsForReactivity(fragment: Node): Comment[] {
     const iterator = document.createTreeWalker(
         fragment, 
         NodeFilter.SHOW_COMMENT,

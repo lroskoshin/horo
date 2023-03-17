@@ -4,6 +4,7 @@
         "rootDir": "./src",
         "outDir": "./dist",
         "declaration": false,
+        "jsxImportSource": "@horojs/types",
         "jsx": "preserve",
     },
     "extends": "../../tsconfig.base.json",

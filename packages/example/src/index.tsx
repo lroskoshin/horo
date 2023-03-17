@@ -1,30 +1,42 @@
 import { Component } from "@horojs/core";
 import { useState, State } from "@horojs/state"
-import type * as d from "@horojs/types";
 
 function HelloWorld({foo}: {foo: State<string>}): Component {
+    const [checked, setChecked, currentChecked] = useState(true);
+    const check = () => setChecked(!currentChecked());
+    const component = (cb: (v: Component) => void) => {
+        return checked((value) => cb(value ? <p>Checked</p> : <p>Unchecked</p>))
+    }
     return <>
-        <h2>{foo}</h2>
         <p>Hello</p>
+        <button onClick={check}>Check</button>
+        {foo}
+        {component}
     </>;
 }
 
 export function foo(bar: string): Component {
-    const [barState, setBarState] = useState(bar);
-    let current = bar;
-    barState((v) => current = v);
+    const [barState, setBarState, current] = useState(bar);
     const hello = true;
+    const [checked, setChecked, currentChecked] = useState(false);
+    const check = () => setChecked(!currentChecked());
+    const component = (cb: (v: Component) => void) => {
+        return checked((value) => cb(value ? <p>Checked</p> : <HelloWorld foo={barState}></HelloWorld>))
+    }
     return  <>
         <div>
             <p class={barState}>Lorem</p>
             {barState}
             <HelloWorld foo={barState}></HelloWorld>
-            <button onClick={() => setBarState(current + hello)}> append </button>
+            <input type="checkbox" onClick={check} />
+            {component}
+            <button onClick={() => {
+                setBarState(current() + hello);
+            }}> append </button>
         </div>
     </>;
 }
 
 const a = foo('hello')
-console.log(a)
 const root = document.body;
 root.appendChild(a.fragment)
