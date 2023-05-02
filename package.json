@@ -27,9 +27,6 @@
     "url": "https://github.com/lroskoshin/horo/issues"
   },
   "homepage": "https://github.com/lroskoshin/horo#readme",
-  "devDependencies": {
-    "lage": "^0.31.2"
-  },
   "workspaces": [
     "packages\\core",
     "packages\\state",

@@ -1,7 +1,7 @@
 export type Unsubscriber = () => void;
 //TO-DO: remove unsubscriber after onDestroy hook will be added
 export type Subscribable<T> = {
-    (listner: (value: T) => void): Unsubscriber | void;
+    (listner: (value: T) => void): Unsubscriber;
 };
 
 export type Subscription<T> = {
@@ -11,9 +11,14 @@ export type Subscription<T> = {
 type Subscriptions<T> = T extends infer K ? Subscription<K> : never;
 
 export interface Component {
-    unsubscribe(): void;
-    fragment: DocumentFragment;
+    unsubscribe: Unsubscriber;
+    fragment: Node;
+    address: () => {
+        start: Node;
+        end: Node;
+    };
 }
+
 export type StaticInsertion = string | Component;
 export type DynamicInsertion = Subscribable<string | Component>;
 export type ValueInsertion = DynamicInsertion | StaticInsertion;

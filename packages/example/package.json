@@ -4,18 +4,19 @@
   "description": "",
   "main": "rollup.config.js",
   "dependencies": {
-    "@horojs/core": "^1.0.5",
-    "@horojs/rollup-plugin": "^1.0.0",
-    "@horojs/state": "^1.0.0"
+    "@horojs/core": "*",
+    "@horojs/rollup-plugin": "*",
+    "@horojs/state": "*"
   },
   "devDependencies": {
-    "@horojs/types": "^1.0.0",
+    "@horojs/types": "*",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-typescript": "^8.3.1",
     "rollup": "^2.70.1",
     "typescript": "^4.6.3"
   },
   "scripts": {
+    "start": "npm run build -- --watch",
     "serve": "serve .",
     "build": "rollup -c rollup.config.cjs"
   },

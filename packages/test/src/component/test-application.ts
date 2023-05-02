@@ -16,5 +16,6 @@ function HelloWorldComponent(): Subscribable<Component> {
 
     return (cb) => {
         cb(component);
+        return () => {};
     };
 }

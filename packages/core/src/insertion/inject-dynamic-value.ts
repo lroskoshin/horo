@@ -1,53 +1,40 @@
-import { InsertionAddress } from './insertion-address';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, DynamicInsertion, Unsubscriber } from './insertion';
+import { noop } from 'src/utils/noop';
 
 export function injectDynamicValue(socket: Comment, insertion: DynamicInsertion): Unsubscriber {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    let lastUnsubscriber = () => {};
-    // Временное решение, возможно нужно будет перейти на Range целиком. 
-    // Пока это не возможно так как вставка корневого DocumentFragment очищает сам фрагмент,
-    // что приводит к потери указателя.
-    let address: InsertionAddress = {
-        end: socket,
-        start: socket,  
-    };
     const currentRange = document.createRange();
+    let lastUnsubscriber = noop;
+    let start: Node = socket;
+    let end: Node = socket;
+    let lastAddress: Component['address'] = () => {
+        return {
+            start,
+            end,
+        };
+    };
     
     const unsubscribe = insertion((value: Component | string) => {
+        const address = lastAddress();
         currentRange.setStartBefore(address.start);
         currentRange.setEndAfter(address.end);
+        currentRange.deleteContents();
+        lastUnsubscriber();
         if(typeof value === 'string') {
-            address = injectDynamicText(currentRange, value);
+            const textNode = document.createTextNode(value);
+            start = textNode;
+            end = textNode;
+            currentRange.insertNode(textNode);
+            lastUnsubscriber = noop;
         } else {
-            address = injectDynamicComponent(currentRange, value);
-            lastUnsubscriber();
+            lastAddress = value.address;
+            currentRange.insertNode(value.fragment);
             lastUnsubscriber = value.unsubscribe;
         }
     });
 
     return () => {
         lastUnsubscriber();
-        unsubscribe?.();
+        unsubscribe();
     };
-}
-
-function injectDynamicText(range: Range, value: string): InsertionAddress {
-    const textNode = document.createTextNode(value);
-    range.deleteContents();
-    range.insertNode(textNode);
-    range.selectNode(textNode);
-    return {
-        end: textNode,
-        start: textNode,
-    };
-}
-
-function injectDynamicComponent(range: Range, value: Component): InsertionAddress {
-    range.deleteContents();
-    const address: InsertionAddress = {
-        start: value.fragment.firstChild as Node,
-        end: value.fragment.lastChild as Node,
-    };
-    range.insertNode(value.fragment);
-    return address;
 }

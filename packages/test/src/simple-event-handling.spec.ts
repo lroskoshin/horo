@@ -14,6 +14,7 @@ describe('Event Handling RxJS', () => {
     };
     const text = (cb: (v: string) => void) => {
         listner = cb;
+        return () => {};
     };
     const element = document.createElement('div');
  

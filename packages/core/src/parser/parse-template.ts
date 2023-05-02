@@ -1,4 +1,4 @@
-import { eventHandlingPrefix, insertionPrefix, attrsPrefix } from '../instruction';
+import { insertionPrefix, attrsPrefix, eventHandlingPrefix } from '../instruction';
 
 // eslint-disable-next-line no-useless-escape
 const attrsPattern = /(<[a-z\=\"\s\-]* )([a-z\-\@]*)="?$/mi;
@@ -10,9 +10,9 @@ export function parseTemplate(template: TemplateStringsArray): string {
         if(dataAttr === null) {
             // Contetn isertion
             result =`${result}<!--${insertionPrefix}${index-1}-->${currentChunk}`;
-        } else if(dataAttr[2].startsWith(eventHandlingPrefix)) {
+        } else if(dataAttr[2].startsWith('@')) {
             // Event handling
-            result =`${result.replace(attrsPattern, `<!--$2:${index-1}-->$1`)}${removeQuote(currentChunk)}`;
+            result =`${result.replace(attrsPattern, (m, p1, p2) => `<!--${eventHandlingPrefix}${p2.substring(1)}:${index-1}-->${p1}`)}${removeQuote(currentChunk)}`;
         } else {
             // Reactive attr
             result = `${result.replace(attrsPattern, `<!--${attrsPrefix}$2:${index-1}-->$1`)}${removeQuote(currentChunk)}`;
